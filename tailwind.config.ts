@@ -60,13 +60,9 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        badge: {
-          free: "hsl(var(--badge-free))",
-          "free-foreground": "hsl(var(--badge-free-foreground))",
-          paid: "hsl(var(--badge-paid))",
-          "paid-foreground": "hsl(var(--badge-paid-foreground))",
-          hot: "hsl(var(--badge-hot))",
-          "hot-foreground": "hsl(var(--badge-hot-foreground))",
+        whatsapp: {
+          DEFAULT: "hsl(var(--whatsapp))",
+          foreground: "hsl(var(--whatsapp-foreground))",
         },
         surface: {
           elevated: "hsl(var(--surface-elevated))",
@@ -95,13 +91,9 @@ export default {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        "slide-in-right": {
-          "0%": { transform: "translateX(20px)", opacity: "0" },
-          "100%": { transform: "translateX(0)", opacity: "1" },
-        },
-        "count-up": {
-          "0%": { opacity: "0", transform: "translateY(10px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-6px)" },
         },
       },
       animation: {
@@ -109,8 +101,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-up": "fade-up 0.6s ease-out forwards",
         "fade-in": "fade-in 0.5s ease-out forwards",
-        "slide-in-right": "slide-in-right 0.5s ease-out forwards",
-        "count-up": "count-up 0.8s ease-out forwards",
+        float: "float 3s ease-in-out infinite",
       },
     },
   },

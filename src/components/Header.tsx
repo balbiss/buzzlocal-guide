@@ -1,52 +1,52 @@
 import { useState } from "react";
-import { Search, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+
+const WHATSAPP_URL = "https://wa.me/5511975858999?text=" + encodeURIComponent("Olá! Gostaria de saber mais sobre os eventos da JR Inovações.");
 
 const Header = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-extrabold text-sm">E</span>
+        <a href="#" className="flex items-center gap-2">
+          <div className="w-9 h-9 rounded-lg gradient-primary flex items-center justify-center">
+            <span className="font-extrabold text-primary-foreground text-sm">JR</span>
           </div>
-          <span className="text-xl font-extrabold text-foreground tracking-tight">Eventora</span>
-        </Link>
+          <div className="leading-none">
+            <span className="text-lg font-extrabold text-foreground tracking-tight block">JR INOVAÇÕES</span>
+            <span className="text-[10px] text-muted-foreground tracking-wider uppercase">Desenvolvimento de Pessoas</span>
+          </div>
+        </a>
 
-        {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">Encontrar Eventos</Link>
-          <a href="#categorias" className="text-muted-foreground hover:text-foreground transition-colors">Categorias</a>
-          <a href="#blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</a>
+          <a href="#sobre" className="text-muted-foreground hover:text-primary transition-colors">Sobre</a>
+          <a href="#eventos" className="text-muted-foreground hover:text-primary transition-colors">Eventos</a>
+          <a href="#galeria" className="text-muted-foreground hover:text-primary transition-colors">Galeria</a>
+          <a href="#contato" className="text-muted-foreground hover:text-primary transition-colors">Contato</a>
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
-          <Button variant="outline" size="sm" asChild>
-            <a href="#como-funciona">Cadastrar Evento</a>
-          </Button>
-          <Button size="sm" className="gradient-primary text-primary-foreground border-0 shadow-hero" asChild>
-            <a href="#organizadores">Divulgar Evento</a>
+        <div className="hidden md:block">
+          <Button size="sm" className="gradient-primary text-primary-foreground border-0 font-bold shadow-glow" asChild>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
           </Button>
         </div>
 
-        {/* Mobile toggle */}
-        <button className="md:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+        <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
+          {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
+      {open && (
         <div className="md:hidden bg-card border-b border-border px-4 pb-4 animate-fade-in">
           <nav className="flex flex-col gap-3 text-sm font-medium">
-            <Link to="/" className="py-2 text-foreground" onClick={() => setMobileOpen(false)}>Encontrar Eventos</Link>
-            <a href="#categorias" className="py-2 text-foreground" onClick={() => setMobileOpen(false)}>Categorias</a>
-            <a href="#blog" className="py-2 text-foreground" onClick={() => setMobileOpen(false)}>Blog</a>
-            <Button size="sm" className="gradient-primary text-primary-foreground border-0 w-full mt-2">
-              Divulgar Evento
+            <a href="#sobre" className="py-2 text-foreground" onClick={() => setOpen(false)}>Sobre</a>
+            <a href="#eventos" className="py-2 text-foreground" onClick={() => setOpen(false)}>Eventos</a>
+            <a href="#galeria" className="py-2 text-foreground" onClick={() => setOpen(false)}>Galeria</a>
+            <a href="#contato" className="py-2 text-foreground" onClick={() => setOpen(false)}>Contato</a>
+            <Button size="sm" className="gradient-primary text-primary-foreground border-0 font-bold w-full mt-2" asChild>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
             </Button>
           </nav>
         </div>
