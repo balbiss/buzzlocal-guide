@@ -2,7 +2,7 @@ import { Calendar, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import eventoImg from "@/assets/evento-vendedor-sonhos.jpg";
+import eventoImg from "@/assets/vendedor-sonhos.jpeg";
 
 const WHATSAPP_URL = "https://wa.me/5511975858999?text=";
 
