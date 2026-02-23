@@ -29,11 +29,6 @@ const galleryItems = [
     image: odontologiaUnivap2018,
   },
   {
-    title: "Mestre Machida SJC",
-    year: "2018",
-    image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&h=400&fit=crop",
-  },
-  {
     title: "Alfredo Rocha Teatro Colinas",
     year: "2017",
     image: alfredoRocha2017,
