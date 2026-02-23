@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import alfredoRocha2017 from "@/assets/alfredo-rocha-2017.avif";
 
 const galleryItems = [
   {
@@ -26,7 +27,7 @@ const galleryItems = [
   {
     title: "Alfredo Rocha Teatro Colinas",
     year: "2017",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop",
+    image: alfredoRocha2017,
   },
   {
     title: "Workshop Empresarial",
