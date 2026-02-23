@@ -4,12 +4,13 @@ import { X } from "lucide-react";
 import alfredoRocha2017 from "@/assets/alfredo-rocha-2017.avif";
 import odontologiaUnivap2018 from "@/assets/odontologia-univap-2018.avif";
 import mestreMachida2019 from "@/assets/mestre-machida-2019.avif";
+import lyotoMachida2019 from "@/assets/lyoto-machida-2019.png";
 
 const galleryItems = [
   {
-    title: "Lyoto Machida e Vinicio",
+    title: "Lyoto Machida e Vinicio — Jacareí",
     year: "2019",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop",
+    image: lyotoMachida2019,
   },
   {
     title: "Mestre Machida Campinas",
