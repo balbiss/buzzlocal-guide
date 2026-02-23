@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import alfredoRocha2017 from "@/assets/alfredo-rocha-2017.avif";
 import odontologiaUnivap2018 from "@/assets/odontologia-univap-2018.avif";
+import mestreMachida2019 from "@/assets/mestre-machida-2019.avif";
 
 const galleryItems = [
   {
@@ -11,9 +12,9 @@ const galleryItems = [
     image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop",
   },
   {
-    title: "Mestre Machida",
+    title: "Mestre Machida Campinas",
     year: "2019",
-    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop",
+    image: mestreMachida2019,
   },
   {
     title: "Odontologia Univap",
