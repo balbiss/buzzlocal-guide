@@ -56,6 +56,16 @@ import lyotoJac8327 from "@/assets/lyoto-jac-8327.png";
 import lyotoJac8328 from "@/assets/lyoto-jac-8328.png";
 import lyotoJac8329 from "@/assets/lyoto-jac-8329.png";
 import lyotoJac8330 from "@/assets/lyoto-jac-8330.png";
+import lyotoJac8331 from "@/assets/lyoto-jac-8331.png";
+import lyotoJac8334 from "@/assets/lyoto-jac-8334.png";
+import lyotoJac8335 from "@/assets/lyoto-jac-8335.png";
+import lyotoJac8337 from "@/assets/lyoto-jac-8337.png";
+import lyotoJac8338 from "@/assets/lyoto-jac-8338.png";
+import lyotoJac8339 from "@/assets/lyoto-jac-8339.png";
+import lyotoJac8340 from "@/assets/lyoto-jac-8340.png";
+import lyotoJac8341 from "@/assets/lyoto-jac-8341.png";
+import lyotoJac8342 from "@/assets/lyoto-jac-8342.png";
+import lyotoJac8343 from "@/assets/lyoto-jac-8343.png";
 
 type GalleryItem = {
   title: string;
@@ -79,6 +89,16 @@ const galleryItems: GalleryItem[] = [
       lyotoJac8328,
       lyotoJac8329,
       lyotoJac8330,
+      lyotoJac8331,
+      lyotoJac8334,
+      lyotoJac8335,
+      lyotoJac8337,
+      lyotoJac8338,
+      lyotoJac8339,
+      lyotoJac8340,
+      lyotoJac8341,
+      lyotoJac8342,
+      lyotoJac8343,
     ],
   },
   {
