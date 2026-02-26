@@ -86,11 +86,11 @@ const EventsSection = () => {
                     rel="noopener noreferrer"
                     className="block group"
                   >
-                    <div className="relative aspect-[16/9] md:aspect-[21/9] rounded-3xl overflow-hidden shadow-card border border-border hover:shadow-card-hover transition-all">
+                    <div className="relative aspect-[16/9] md:aspect-[16/9] rounded-3xl overflow-hidden shadow-card border border-border hover:shadow-card-hover transition-all">
                       <img
                         src={event.image}
                         alt={event.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-contain bg-background group-hover:scale-105 transition-transform duration-500"
                       />
                       {/* Overlay gradient */}
                       <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
