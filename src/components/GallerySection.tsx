@@ -46,6 +46,16 @@ import machida8351 from "@/assets/machida-8351.avif";
 import machida8352 from "@/assets/machida-8352.avif";
 import machida8353 from "@/assets/machida-8353.avif";
 import mestreMachida2019 from "@/assets/mestre-machida-2019.avif";
+import lyotoJac8316 from "@/assets/lyoto-jac-8316.png";
+import lyotoJac8320 from "@/assets/lyoto-jac-8320.png";
+import lyotoJac8322 from "@/assets/lyoto-jac-8322.png";
+import lyotoJac8323 from "@/assets/lyoto-jac-8323.png";
+import lyotoJac8324 from "@/assets/lyoto-jac-8324.png";
+import lyotoJac8326 from "@/assets/lyoto-jac-8326.png";
+import lyotoJac8327 from "@/assets/lyoto-jac-8327.png";
+import lyotoJac8328 from "@/assets/lyoto-jac-8328.png";
+import lyotoJac8329 from "@/assets/lyoto-jac-8329.png";
+import lyotoJac8330 from "@/assets/lyoto-jac-8330.png";
 
 type GalleryItem = {
   title: string;
@@ -57,7 +67,19 @@ const galleryItems: GalleryItem[] = [
   {
     title: "Lyoto Machida e Vinicio — Jacareí",
     year: "2019",
-    images: [lyotoMachida2019],
+    images: [
+      lyotoMachida2019,
+      lyotoJac8316,
+      lyotoJac8320,
+      lyotoJac8322,
+      lyotoJac8323,
+      lyotoJac8324,
+      lyotoJac8326,
+      lyotoJac8327,
+      lyotoJac8328,
+      lyotoJac8329,
+      lyotoJac8330,
+    ],
   },
   {
     title: "Lyoto Machida e Vinicio — Campinas",
