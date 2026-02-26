@@ -76,6 +76,16 @@ import lyotoCamp8285 from "@/assets/lyoto-camp-8285.png";
 import lyotoCamp8286 from "@/assets/lyoto-camp-8286.png";
 import lyotoCamp8287 from "@/assets/lyoto-camp-8287.png";
 import lyotoCamp8289 from "@/assets/lyoto-camp-8289.png";
+import lyotoCamp8291 from "@/assets/lyoto-camp-8291.png";
+import lyotoCamp8292 from "@/assets/lyoto-camp-8292.png";
+import lyotoCamp8294 from "@/assets/lyoto-camp-8294.png";
+import lyotoCamp8295 from "@/assets/lyoto-camp-8295.png";
+import lyotoCamp8296 from "@/assets/lyoto-camp-8296.png";
+import lyotoCamp8297 from "@/assets/lyoto-camp-8297.png";
+import lyotoCamp8298 from "@/assets/lyoto-camp-8298.png";
+import lyotoCamp8299 from "@/assets/lyoto-camp-8299.png";
+import lyotoCamp8300 from "@/assets/lyoto-camp-8300.png";
+import lyotoCamp8301 from "@/assets/lyoto-camp-8301.png";
 
 type GalleryItem = {
   title: string;
@@ -126,6 +136,16 @@ const galleryItems: GalleryItem[] = [
       lyotoCamp8286,
       lyotoCamp8287,
       lyotoCamp8289,
+      lyotoCamp8291,
+      lyotoCamp8292,
+      lyotoCamp8294,
+      lyotoCamp8295,
+      lyotoCamp8296,
+      lyotoCamp8297,
+      lyotoCamp8298,
+      lyotoCamp8299,
+      lyotoCamp8300,
+      lyotoCamp8301,
     ],
   },
   {
