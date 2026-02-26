@@ -12,7 +12,7 @@ const AboutSection = () => {
   return (
     <section id="sobre" className="py-20 bg-surface-elevated">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -47,35 +47,6 @@ const AboutSection = () => {
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="aspect-square rounded-3xl gradient-primary p-[2px]">
-              <div className="w-full h-full rounded-3xl bg-card flex items-center justify-center p-8">
-                <div className="text-center">
-                  <div className="w-20 h-20 rounded-2xl gradient-primary flex items-center justify-center mx-auto mb-6 shadow-glow">
-                    <span className="text-3xl font-extrabold text-primary-foreground">JR</span>
-                  </div>
-                  <h3 className="text-2xl font-extrabold text-foreground mb-2">JR INOVAÇÕES</h3>
-                  <p className="text-sm text-muted-foreground">Desenvolvimento de Pessoas<br />& Consultoria Empresarial</p>
-                  <div className="mt-8 grid grid-cols-2 gap-4">
-                    <div className="bg-secondary rounded-xl p-4">
-                      <div className="text-2xl font-extrabold text-gradient">50+</div>
-                      <p className="text-xs text-muted-foreground mt-1">Eventos realizados</p>
-                    </div>
-                    <div className="bg-secondary rounded-xl p-4">
-                      <div className="text-2xl font-extrabold text-gradient">5K+</div>
-                      <p className="text-xs text-muted-foreground mt-1">Participantes</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
