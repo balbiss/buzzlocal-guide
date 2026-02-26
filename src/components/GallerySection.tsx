@@ -25,6 +25,16 @@ import alfredo8407 from "@/assets/alfredo-8407.avif";
 import alfredo8408 from "@/assets/alfredo-8408.avif";
 import alfredo8409 from "@/assets/alfredo-8409.avif";
 import alfredo8410 from "@/assets/alfredo-8410.avif";
+import alfredo8411 from "@/assets/alfredo-8411.avif";
+import alfredo8412 from "@/assets/alfredo-8412.avif";
+import alfredo8413 from "@/assets/alfredo-8413.avif";
+import alfredo8415 from "@/assets/alfredo-8415.avif";
+import alfredo8416 from "@/assets/alfredo-8416.avif";
+import alfredo8417 from "@/assets/alfredo-8417.avif";
+import alfredo8419 from "@/assets/alfredo-8419.avif";
+import alfredo8420 from "@/assets/alfredo-8420.avif";
+import alfredo8424 from "@/assets/alfredo-8424.avif";
+import alfredo8425 from "@/assets/alfredo-8425.avif";
 
 type GalleryItem = {
   title: string;
@@ -75,6 +85,16 @@ const galleryItems: GalleryItem[] = [
       alfredo8408,
       alfredo8409,
       alfredo8410,
+      alfredo8411,
+      alfredo8412,
+      alfredo8413,
+      alfredo8415,
+      alfredo8416,
+      alfredo8417,
+      alfredo8419,
+      alfredo8420,
+      alfredo8424,
+      alfredo8425,
     ],
   },
 ];
