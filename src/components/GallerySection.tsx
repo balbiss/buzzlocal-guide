@@ -1,47 +1,85 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import alfredoRocha2017 from "@/assets/alfredo-rocha-2017.avif";
 import odontologiaUnivap2018 from "@/assets/odontologia-univap-2018.avif";
-import mestreMachida2019 from "@/assets/mestre-machida-2019.avif";
 import lyotoMachida2019 from "@/assets/lyoto-machida-2019.png";
 import lyotoMachidaCampinas2019 from "@/assets/lyoto-machida-campinas-2019.png";
+import univap8390 from "@/assets/univap-8390-1.avif";
+import univap8391 from "@/assets/univap-8391.avif";
+import univap8391b from "@/assets/univap-8391-1.avif";
+import univap8392 from "@/assets/univap-8392.avif";
+import univap8392b from "@/assets/univap-8392-1.avif";
+import univap8393 from "@/assets/univap-8393.avif";
+import univap8393b from "@/assets/univap-8393-1.avif";
+import univap8394 from "@/assets/univap-8394.avif";
+import univap8394b from "@/assets/univap-8394-1.avif";
+import univap8395 from "@/assets/univap-8395.avif";
 
-const galleryItems = [
+type GalleryItem = {
+  title: string;
+  year: string;
+  images: string[];
+};
+
+const galleryItems: GalleryItem[] = [
   {
     title: "Lyoto Machida e Vinicio — Jacareí",
     year: "2019",
-    image: lyotoMachida2019,
+    images: [lyotoMachida2019],
   },
   {
     title: "Lyoto Machida e Vinicio — Campinas",
     year: "2019",
-    image: lyotoMachidaCampinas2019,
-  },
-  {
-    title: "Mestre Machida Campinas",
-    year: "2019",
-    image: mestreMachida2019,
+    images: [lyotoMachidaCampinas2019],
   },
   {
     title: "Odontologia Univap",
     year: "2018",
-    image: odontologiaUnivap2018,
+    images: [
+      odontologiaUnivap2018,
+      univap8390,
+      univap8391,
+      univap8391b,
+      univap8392,
+      univap8392b,
+      univap8393,
+      univap8393b,
+      univap8394,
+      univap8394b,
+      univap8395,
+    ],
   },
   {
     title: "Alfredo Rocha Teatro Colinas",
     year: "2017",
-    image: alfredoRocha2017,
-  },
-  {
-    title: "Workshop Empresarial",
-    year: "2018",
-    image: "https://images.unsplash.com/photo-1559223607-a43c990c692c?w=600&h=400&fit=crop",
+    images: [alfredoRocha2017],
   },
 ];
 
 const GallerySection = () => {
-  const [selected, setSelected] = useState<typeof galleryItems[0] | null>(null);
+  const [selected, setSelected] = useState<GalleryItem | null>(null);
+  const [photoIndex, setPhotoIndex] = useState(0);
+
+  const openLightbox = (item: GalleryItem, index = 0) => {
+    setSelected(item);
+    setPhotoIndex(index);
+  };
+
+  const closeLightbox = () => {
+    setSelected(null);
+    setPhotoIndex(0);
+  };
+
+  const prevPhoto = () => {
+    if (!selected) return;
+    setPhotoIndex((prev) => (prev - 1 + selected.images.length) % selected.images.length);
+  };
+
+  const nextPhoto = () => {
+    if (!selected) return;
+    setPhotoIndex((prev) => (prev + 1) % selected.images.length);
+  };
 
   return (
     <section id="galeria" className="py-20 bg-surface-elevated">
@@ -60,18 +98,20 @@ const GallerySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
-              onClick={() => setSelected(item)}
+              onClick={() => openLightbox(item)}
               className="group relative aspect-[4/3] rounded-2xl overflow-hidden shadow-card border border-border"
             >
               <img
-                src={item.image}
+                src={item.images[0]}
                 alt={item.title}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                 <h3 className="font-bold text-foreground text-sm">{item.title}</h3>
-                <p className="text-xs text-primary">{item.year}</p>
+                <p className="text-xs text-primary">
+                  {item.year} {item.images.length > 1 && `• ${item.images.length} fotos`}
+                </p>
               </div>
             </motion.button>
           ))}
@@ -86,22 +126,44 @@ const GallerySection = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 bg-background/95 flex items-center justify-center p-4"
-            onClick={() => setSelected(null)}
+            onClick={closeLightbox}
           >
-            <button className="absolute top-4 right-4 text-foreground hover:text-primary" onClick={() => setSelected(null)}>
+            <button className="absolute top-4 right-4 text-foreground hover:text-primary z-10" onClick={closeLightbox}>
               <X size={28} />
             </button>
+
+            {selected.images.length > 1 && (
+              <>
+                <button
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full bg-card/80 backdrop-blur border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  onClick={(e) => { e.stopPropagation(); prevPhoto(); }}
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full bg-card/80 backdrop-blur border border-border flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                  onClick={(e) => { e.stopPropagation(); nextPhoto(); }}
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </>
+            )}
+
             <motion.div
+              key={photoIndex}
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               className="max-w-3xl w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              <img src={selected.image} alt={selected.title} className="w-full rounded-2xl shadow-card" />
+              <img src={selected.images[photoIndex]} alt={selected.title} className="w-full rounded-2xl shadow-card" />
               <div className="mt-4 text-center">
                 <h3 className="font-bold text-foreground text-lg">{selected.title}</h3>
-                <p className="text-primary text-sm">{selected.year}</p>
+                <p className="text-primary text-sm">
+                  {selected.year}
+                  {selected.images.length > 1 && ` • ${photoIndex + 1}/${selected.images.length}`}
+                </p>
               </div>
             </motion.div>
           </motion.div>
