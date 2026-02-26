@@ -35,6 +35,17 @@ import alfredo8419 from "@/assets/alfredo-8419.avif";
 import alfredo8420 from "@/assets/alfredo-8420.avif";
 import alfredo8424 from "@/assets/alfredo-8424.avif";
 import alfredo8425 from "@/assets/alfredo-8425.avif";
+import machida8344 from "@/assets/machida-8344.avif";
+import machida8345 from "@/assets/machida-8345.avif";
+import machida8346 from "@/assets/machida-8346.avif";
+import machida8347 from "@/assets/machida-8347.avif";
+import machida8348 from "@/assets/machida-8348.avif";
+import machida8349 from "@/assets/machida-8349.avif";
+import machida8350 from "@/assets/machida-8350.avif";
+import machida8351 from "@/assets/machida-8351.avif";
+import machida8352 from "@/assets/machida-8352.avif";
+import machida8353 from "@/assets/machida-8353.avif";
+import mestreMachida2019 from "@/assets/mestre-machida-2019.avif";
 
 type GalleryItem = {
   title: string;
@@ -52,6 +63,23 @@ const galleryItems: GalleryItem[] = [
     title: "Lyoto Machida e Vinicio — Campinas",
     year: "2019",
     images: [lyotoMachidaCampinas2019],
+  },
+  {
+    title: "Mestre Machida Campinas",
+    year: "2019",
+    images: [
+      mestreMachida2019,
+      machida8344,
+      machida8345,
+      machida8346,
+      machida8347,
+      machida8348,
+      machida8349,
+      machida8350,
+      machida8351,
+      machida8352,
+      machida8353,
+    ],
   },
   {
     title: "Odontologia Univap",
