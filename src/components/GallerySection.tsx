@@ -66,6 +66,16 @@ import lyotoJac8340 from "@/assets/lyoto-jac-8340.png";
 import lyotoJac8341 from "@/assets/lyoto-jac-8341.png";
 import lyotoJac8342 from "@/assets/lyoto-jac-8342.png";
 import lyotoJac8343 from "@/assets/lyoto-jac-8343.png";
+import lyotoCamp8278 from "@/assets/lyoto-camp-8278.png";
+import lyotoCamp8279 from "@/assets/lyoto-camp-8279.png";
+import lyotoCamp8280 from "@/assets/lyoto-camp-8280.png";
+import lyotoCamp8282 from "@/assets/lyoto-camp-8282.png";
+import lyotoCamp8283 from "@/assets/lyoto-camp-8283.png";
+import lyotoCamp8284 from "@/assets/lyoto-camp-8284.png";
+import lyotoCamp8285 from "@/assets/lyoto-camp-8285.png";
+import lyotoCamp8286 from "@/assets/lyoto-camp-8286.png";
+import lyotoCamp8287 from "@/assets/lyoto-camp-8287.png";
+import lyotoCamp8289 from "@/assets/lyoto-camp-8289.png";
 
 type GalleryItem = {
   title: string;
@@ -104,7 +114,19 @@ const galleryItems: GalleryItem[] = [
   {
     title: "Lyoto Machida e Vinicio — Campinas",
     year: "2019",
-    images: [lyotoMachidaCampinas2019],
+    images: [
+      lyotoMachidaCampinas2019,
+      lyotoCamp8278,
+      lyotoCamp8279,
+      lyotoCamp8280,
+      lyotoCamp8282,
+      lyotoCamp8283,
+      lyotoCamp8284,
+      lyotoCamp8285,
+      lyotoCamp8286,
+      lyotoCamp8287,
+      lyotoCamp8289,
+    ],
   },
   {
     title: "Mestre Machida Campinas",
