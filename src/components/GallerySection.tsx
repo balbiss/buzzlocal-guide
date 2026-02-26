@@ -15,6 +15,16 @@ import univap8393b from "@/assets/univap-8393-1.avif";
 import univap8394 from "@/assets/univap-8394.avif";
 import univap8394b from "@/assets/univap-8394-1.avif";
 import univap8395 from "@/assets/univap-8395.avif";
+import alfredo8401 from "@/assets/alfredo-8401.avif";
+import alfredo8402 from "@/assets/alfredo-8402.avif";
+import alfredo8403 from "@/assets/alfredo-8403.avif";
+import alfredo8404 from "@/assets/alfredo-8404.avif";
+import alfredo8405 from "@/assets/alfredo-8405.avif";
+import alfredo8406 from "@/assets/alfredo-8406.avif";
+import alfredo8407 from "@/assets/alfredo-8407.avif";
+import alfredo8408 from "@/assets/alfredo-8408.avif";
+import alfredo8409 from "@/assets/alfredo-8409.avif";
+import alfredo8410 from "@/assets/alfredo-8410.avif";
 
 type GalleryItem = {
   title: string;
@@ -53,7 +63,19 @@ const galleryItems: GalleryItem[] = [
   {
     title: "Alfredo Rocha Teatro Colinas",
     year: "2017",
-    images: [alfredoRocha2017],
+    images: [
+      alfredoRocha2017,
+      alfredo8401,
+      alfredo8402,
+      alfredo8403,
+      alfredo8404,
+      alfredo8405,
+      alfredo8406,
+      alfredo8407,
+      alfredo8408,
+      alfredo8409,
+      alfredo8410,
+    ],
   },
 ];
 
