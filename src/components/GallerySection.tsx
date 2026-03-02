@@ -96,6 +96,16 @@ import lyotoCamp8309 from "@/assets/lyoto-camp-8309.png";
 import lyotoCamp8310 from "@/assets/lyoto-camp-8310.png";
 import lyotoCamp8311 from "@/assets/lyoto-camp-8311.png";
 import lyotoCamp8312 from "@/assets/lyoto-camp-8312.png";
+import teatroHmih01 from "@/assets/teatro-hmih-01.jpeg";
+import teatroHmih02 from "@/assets/teatro-hmih-02.jpeg";
+import teatroHmih03 from "@/assets/teatro-hmih-03.jpeg";
+import teatroHmih04 from "@/assets/teatro-hmih-04.jpeg";
+import teatroHmih05 from "@/assets/teatro-hmih-05.jpeg";
+import teatroHmih06 from "@/assets/teatro-hmih-06.jpeg";
+import teatroHmih07 from "@/assets/teatro-hmih-07.jpeg";
+import teatroHmih08 from "@/assets/teatro-hmih-08.jpeg";
+import teatroHmih09 from "@/assets/teatro-hmih-09.jpeg";
+import teatroHmih10 from "@/assets/teatro-hmih-10.jpeg";
 
 type GalleryItem = {
   title: string;
@@ -104,6 +114,22 @@ type GalleryItem = {
 };
 
 const galleryItems: GalleryItem[] = [
+  {
+    title: "O Homem Mais Inteligente da História — Teatro",
+    year: "2025",
+    images: [
+      teatroHmih04,
+      teatroHmih01,
+      teatroHmih02,
+      teatroHmih03,
+      teatroHmih05,
+      teatroHmih06,
+      teatroHmih07,
+      teatroHmih08,
+      teatroHmih09,
+      teatroHmih10,
+    ],
+  },
   {
     title: "Lyoto Machida e Vinicio — Jacareí",
     year: "2019",
