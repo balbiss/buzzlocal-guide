@@ -174,6 +174,12 @@ const galleryItems: GalleryItem[] = [
       teatroHmih28,
       teatroHmih29,
       teatroHmih30,
+      teatroHmih31,
+      teatroHmih32,
+      teatroHmih33,
+      teatroHmih34,
+      teatroHmih35,
+      teatroHmih36,
     ],
   },
   {
