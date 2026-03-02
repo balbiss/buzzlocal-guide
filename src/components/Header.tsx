@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo-jr.png";
 
 const WHATSAPP_URL = "https://wa.me/5511975858999?text=" + encodeURIComponent("Olá! Gostaria de saber mais sobre os eventos da JR Inovações.");
 
@@ -11,13 +12,7 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <a href="#" className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-lg gradient-primary flex items-center justify-center">
-            <span className="font-extrabold text-primary-foreground text-sm">JR</span>
-          </div>
-          <div className="leading-none">
-            <span className="text-lg font-extrabold text-foreground tracking-tight block">JR INOVAÇÕES</span>
-            <span className="text-[10px] text-muted-foreground tracking-wider uppercase">Desenvolvimento de Pessoas</span>
-          </div>
+          <img src={logo} alt="JR Inovações" className="h-10 w-auto" />
         </a>
 
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">

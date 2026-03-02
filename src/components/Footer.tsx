@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin } from "lucide-react";
+import logo from "@/assets/logo-jr.png";
 
 const Footer = () => {
   return (
@@ -7,13 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg gradient-primary flex items-center justify-center">
-                <span className="font-extrabold text-primary-foreground text-sm">JR</span>
-              </div>
-              <div className="leading-none">
-                <span className="text-lg font-extrabold text-foreground block">JR INOVAÇÕES</span>
-                <span className="text-[10px] text-muted-foreground tracking-wider uppercase">Desenvolvimento de Pessoas</span>
-              </div>
+              <img src={logo} alt="JR Inovações" className="h-12 w-auto" />
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Fortalecendo o futuro através de ensinamentos reais. Desenvolvimento de Pessoas & Consultoria Empresarial.
