@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import logo from "@/assets/logo-jr.png";
 
 const Footer = () => {
@@ -26,12 +26,7 @@ const Footer = () => {
                 <Phone size={15} className="text-primary shrink-0" />
                 <a href="tel:+5511975858999" className="hover:text-primary transition-colors">(11) 97585-8999</a>
               </li>
-              <li className="flex items-center gap-2">
-                <MapPin size={15} className="text-primary shrink-0" />
-                <span>São José dos Campos – SP – Brasil</span>
-              </li>
             </ul>
-            <p className="text-xs text-muted-foreground mt-3">CNPJ: 27.642.916/0001-00</p>
           </div>
 
           <div>
