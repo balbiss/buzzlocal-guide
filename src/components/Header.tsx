@@ -20,6 +20,7 @@ const Header = () => {
           <a href="#sobre" className="text-muted-foreground hover:text-primary transition-colors">Sobre</a>
           <a href="#eventos" className="text-muted-foreground hover:text-primary transition-colors">Eventos</a>
           <a href="#galeria" className="text-muted-foreground hover:text-primary transition-colors">Galeria</a>
+          <a href="/blog" className="text-muted-foreground hover:text-primary transition-colors">Blog</a>
           <a href="#contato" className="text-muted-foreground hover:text-primary transition-colors">Contato</a>
         </nav>
 
@@ -40,6 +41,7 @@ const Header = () => {
             <a href="#sobre" className="py-2 text-foreground" onClick={() => setOpen(false)}>Sobre</a>
             <a href="#eventos" className="py-2 text-foreground" onClick={() => setOpen(false)}>Eventos</a>
             <a href="#galeria" className="py-2 text-foreground" onClick={() => setOpen(false)}>Galeria</a>
+            <a href="/blog" className="py-2 text-foreground" onClick={() => setOpen(false)}>Blog</a>
             <a href="#contato" className="py-2 text-foreground" onClick={() => setOpen(false)}>Contato</a>
             <Button size="sm" className="gradient-primary text-primary-foreground border-0 font-bold w-full mt-2" asChild>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
