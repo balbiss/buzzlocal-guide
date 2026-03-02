@@ -126,6 +126,12 @@ import teatroHmih27 from "@/assets/teatro-hmih-27.jpeg";
 import teatroHmih28 from "@/assets/teatro-hmih-28.jpeg";
 import teatroHmih29 from "@/assets/teatro-hmih-29.jpeg";
 import teatroHmih30 from "@/assets/teatro-hmih-30.jpeg";
+import teatroHmih31 from "@/assets/teatro-hmih-31.jpeg";
+import teatroHmih32 from "@/assets/teatro-hmih-32.jpeg";
+import teatroHmih33 from "@/assets/teatro-hmih-33.jpeg";
+import teatroHmih34 from "@/assets/teatro-hmih-34.jpeg";
+import teatroHmih35 from "@/assets/teatro-hmih-35.jpeg";
+import teatroHmih36 from "@/assets/teatro-hmih-36.jpeg";
 
 type GalleryItem = {
   title: string;
