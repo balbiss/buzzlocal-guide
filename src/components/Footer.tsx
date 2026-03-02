@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-surface-sunken border-t border-border">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 sm:gap-10 mb-10">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <img src={logo} alt="JR Inovações" className="h-12 w-auto" />
