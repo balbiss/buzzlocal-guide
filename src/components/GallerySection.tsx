@@ -106,6 +106,16 @@ import teatroHmih07 from "@/assets/teatro-hmih-07.jpeg";
 import teatroHmih08 from "@/assets/teatro-hmih-08.jpeg";
 import teatroHmih09 from "@/assets/teatro-hmih-09.jpeg";
 import teatroHmih10 from "@/assets/teatro-hmih-10.jpeg";
+import teatroHmih11 from "@/assets/teatro-hmih-11.jpeg";
+import teatroHmih12 from "@/assets/teatro-hmih-12.jpeg";
+import teatroHmih13 from "@/assets/teatro-hmih-13.jpeg";
+import teatroHmih14 from "@/assets/teatro-hmih-14.jpeg";
+import teatroHmih15 from "@/assets/teatro-hmih-15.jpeg";
+import teatroHmih16 from "@/assets/teatro-hmih-16.jpeg";
+import teatroHmih17 from "@/assets/teatro-hmih-17.jpeg";
+import teatroHmih18 from "@/assets/teatro-hmih-18.jpeg";
+import teatroHmih19 from "@/assets/teatro-hmih-19.jpeg";
+import teatroHmih20 from "@/assets/teatro-hmih-20.jpeg";
 
 type GalleryItem = {
   title: string;
@@ -128,6 +138,16 @@ const galleryItems: GalleryItem[] = [
       teatroHmih08,
       teatroHmih09,
       teatroHmih10,
+      teatroHmih11,
+      teatroHmih12,
+      teatroHmih13,
+      teatroHmih14,
+      teatroHmih15,
+      teatroHmih16,
+      teatroHmih17,
+      teatroHmih18,
+      teatroHmih19,
+      teatroHmih20,
     ],
   },
   {
