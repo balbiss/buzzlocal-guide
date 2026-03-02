@@ -125,18 +125,18 @@ const EventsSection = () => {
             <Button
               variant="outline"
               size="icon"
-              className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full bg-card/80 backdrop-blur border-border hover:bg-primary hover:text-primary-foreground transition-colors"
+              className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-10 h-9 w-9 md:h-10 md:w-10 rounded-full bg-card/80 backdrop-blur border-border hover:bg-primary hover:text-primary-foreground transition-colors"
               onClick={() => api?.scrollPrev()}
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={18} />
             </Button>
             <Button
               variant="outline"
               size="icon"
-              className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-10 h-10 w-10 rounded-full bg-card/80 backdrop-blur border-border hover:bg-primary hover:text-primary-foreground transition-colors"
+              className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-10 h-9 w-9 md:h-10 md:w-10 rounded-full bg-card/80 backdrop-blur border-border hover:bg-primary hover:text-primary-foreground transition-colors"
               onClick={() => api?.scrollNext()}
             >
-              <ChevronRight size={20} />
+              <ChevronRight size={18} />
             </Button>
           </Carousel>
 

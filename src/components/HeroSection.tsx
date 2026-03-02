@@ -27,7 +27,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block mb-6"
           >
-            <span className="text-xs font-bold tracking-[0.2em] uppercase text-primary bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+            <span className="text-[10px] sm:text-xs font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-primary bg-primary/10 px-3 sm:px-4 py-2 rounded-full border border-primary/20 leading-tight">
               Fortalecendo o futuro através de ensinamentos reais
             </span>
           </motion.div>
