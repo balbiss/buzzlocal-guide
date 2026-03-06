@@ -132,6 +132,16 @@ import teatroHmih33 from "@/assets/teatro-hmih-33.jpeg";
 import teatroHmih34 from "@/assets/teatro-hmih-34.jpeg";
 import teatroHmih35 from "@/assets/teatro-hmih-35.jpeg";
 import teatroHmih36 from "@/assets/teatro-hmih-36.jpeg";
+import machidaSjc01 from "@/assets/machida-sjc-01.jpeg";
+import machidaSjc02 from "@/assets/machida-sjc-02.jpeg";
+import machidaSjc03 from "@/assets/machida-sjc-03.jpeg";
+import machidaSjc04 from "@/assets/machida-sjc-04.jpeg";
+import machidaSjc05 from "@/assets/machida-sjc-05.jpeg";
+import machidaSjc06 from "@/assets/machida-sjc-06.jpeg";
+import machidaSjc07 from "@/assets/machida-sjc-07.jpeg";
+import machidaSjc08 from "@/assets/machida-sjc-08.jpeg";
+import machidaSjc09 from "@/assets/machida-sjc-09.jpeg";
+import machidaSjc10 from "@/assets/machida-sjc-10.jpeg";
 
 type GalleryItem = {
   title: string;
@@ -261,6 +271,22 @@ const galleryItems: GalleryItem[] = [
       machida8351,
       machida8352,
       machida8353,
+    ],
+  },
+  {
+    title: "Mestre Machida São José dos Campos",
+    year: "2018",
+    images: [
+      machidaSjc01,
+      machidaSjc02,
+      machidaSjc03,
+      machidaSjc04,
+      machidaSjc05,
+      machidaSjc06,
+      machidaSjc07,
+      machidaSjc08,
+      machidaSjc09,
+      machidaSjc10,
     ],
   },
   {
