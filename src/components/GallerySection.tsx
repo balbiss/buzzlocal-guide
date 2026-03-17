@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 import alfredoRocha2017 from "@/assets/alfredo-rocha-2017.avif";
 import odontologiaUnivap2018 from "@/assets/odontologia-univap-2018.avif";
 import lyotoMachida2019 from "@/assets/lyoto-machida-2019.png";
