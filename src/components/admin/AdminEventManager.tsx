@@ -54,24 +54,65 @@ const AdminEventManager = () => {
     fetchEvents();
   }, [fetchEvents]);
 
+  const handleSelectFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files?.length) return;
+    const newFiles = Array.from(e.target.files);
+    setSelectedFiles((prev) => [...prev, ...newFiles]);
+    const newPreviews = newFiles.map((f) => URL.createObjectURL(f));
+    setPreviews((prev) => [...prev, ...newPreviews]);
+    e.target.value = "";
+  };
+
+  const handleRemoveSelectedFile = (index: number) => {
+    URL.revokeObjectURL(previews[index]);
+    setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
+    setPreviews((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const handleCreateEvent = async () => {
     if (!form.title || !form.year) {
       toast.error("Título e ano são obrigatórios");
       return;
     }
-    const { error } = await supabase.from("gallery_events").insert({
+    setUploading(true);
+
+    const { data: eventData, error } = await supabase.from("gallery_events").insert({
       title: form.title,
       year: form.year,
       sort_order: events.length,
-    });
-    if (error) {
-      toast.error("Erro ao criar evento: " + error.message);
-    } else {
-      toast.success("Evento criado!");
-      setForm({ title: "", year: new Date().getFullYear().toString() });
-      setCreating(false);
-      fetchEvents();
+    }).select().single();
+
+    if (error || !eventData) {
+      toast.error("Erro ao criar evento: " + (error?.message || ""));
+      setUploading(false);
+      return;
     }
+
+    // Upload selected photos
+    let successCount = 0;
+    for (const file of selectedFiles) {
+      const ext = file.name.split(".").pop();
+      const fileName = `${eventData.id}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { error: uploadError } = await supabase.storage.from("event-photos").upload(fileName, file);
+      if (uploadError) { toast.error(`Erro ao enviar ${file.name}`); continue; }
+      const { data: urlData } = supabase.storage.from("event-photos").getPublicUrl(fileName);
+      const { error: insertError } = await supabase.from("gallery_photos").insert({
+        event_id: eventData.id,
+        image_url: urlData.publicUrl,
+        sort_order: successCount,
+      });
+      if (!insertError) successCount++;
+    }
+
+    toast.success(`Evento criado com ${successCount} foto(s)!`);
+    // Cleanup previews
+    previews.forEach((p) => URL.revokeObjectURL(p));
+    setSelectedFiles([]);
+    setPreviews([]);
+    setForm({ title: "", year: new Date().getFullYear().toString() });
+    setCreating(false);
+    setUploading(false);
+    fetchEvents();
   };
 
   const handleDeleteEvent = async (id: string) => {
