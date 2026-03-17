@@ -339,6 +339,39 @@ const galleryItems: GalleryItem[] = [
 const GallerySection = () => {
   const [selected, setSelected] = useState<GalleryItem | null>(null);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [dbEvents, setDbEvents] = useState<GalleryItem[]>([]);
+
+  useEffect(() => {
+    const fetchDbEvents = async () => {
+      const { data: events } = await supabase
+        .from("gallery_events")
+        .select("*")
+        .order("sort_order", { ascending: true });
+      
+      if (!events || events.length === 0) return;
+
+      const dbItems: GalleryItem[] = [];
+      for (const event of events) {
+        const { data: photos } = await supabase
+          .from("gallery_photos")
+          .select("*")
+          .eq("event_id", event.id)
+          .order("sort_order", { ascending: true });
+        
+        if (photos && photos.length > 0) {
+          dbItems.push({
+            title: event.title,
+            year: event.year,
+            images: photos.map((p) => p.image_url),
+          });
+        }
+      }
+      setDbEvents(dbItems);
+    };
+    fetchDbEvents();
+  }, []);
+
+  const allItems = [...dbEvents, ...galleryItems];
 
   const openLightbox = (item: GalleryItem, index = 0) => {
     setSelected(item);
