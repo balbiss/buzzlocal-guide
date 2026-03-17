@@ -71,25 +71,7 @@ const GallerySection = () => {
 
   if (!loading && allItems.length === 0) return null;
 
-  const openLightbox = (item: GalleryItem, index = 0) => {
-    setSelected(item);
-    setPhotoIndex(index);
-  };
 
-  const closeLightbox = () => {
-    setSelected(null);
-    setPhotoIndex(0);
-  };
-
-  const prevPhoto = () => {
-    if (!selected) return;
-    setPhotoIndex((prev) => (prev - 1 + selected.images.length) % selected.images.length);
-  };
-
-  const nextPhoto = () => {
-    if (!selected) return;
-    setPhotoIndex((prev) => (prev + 1) % selected.images.length);
-  };
 
   return (
     <section id="galeria" className="py-20 bg-surface-elevated">
