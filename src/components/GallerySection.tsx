@@ -403,7 +403,7 @@ const GallerySection = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          {galleryItems.map((item, i) => (
+          {allItems.map((item, i) => (
             <motion.button
               key={item.title}
               initial={{ opacity: 0, y: 20 }}
