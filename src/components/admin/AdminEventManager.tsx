@@ -29,6 +29,8 @@ const AdminEventManager = () => {
   const [photos, setPhotos] = useState<GalleryPhoto[]>([]);
   const [uploading, setUploading] = useState(false);
   const [form, setForm] = useState({ title: "", year: new Date().getFullYear().toString() });
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [previews, setPreviews] = useState<string[]>([]);
 
   const fetchEvents = useCallback(async () => {
     const { data } = await supabase
@@ -52,24 +54,65 @@ const AdminEventManager = () => {
     fetchEvents();
   }, [fetchEvents]);
 
+  const handleSelectFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files?.length) return;
+    const newFiles = Array.from(e.target.files);
+    setSelectedFiles((prev) => [...prev, ...newFiles]);
+    const newPreviews = newFiles.map((f) => URL.createObjectURL(f));
+    setPreviews((prev) => [...prev, ...newPreviews]);
+    e.target.value = "";
+  };
+
+  const handleRemoveSelectedFile = (index: number) => {
+    URL.revokeObjectURL(previews[index]);
+    setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
+    setPreviews((prev) => prev.filter((_, i) => i !== index));
+  };
+
   const handleCreateEvent = async () => {
     if (!form.title || !form.year) {
       toast.error("Título e ano são obrigatórios");
       return;
     }
-    const { error } = await supabase.from("gallery_events").insert({
+    setUploading(true);
+
+    const { data: eventData, error } = await supabase.from("gallery_events").insert({
       title: form.title,
       year: form.year,
       sort_order: events.length,
-    });
-    if (error) {
-      toast.error("Erro ao criar evento: " + error.message);
-    } else {
-      toast.success("Evento criado!");
-      setForm({ title: "", year: new Date().getFullYear().toString() });
-      setCreating(false);
-      fetchEvents();
+    }).select().single();
+
+    if (error || !eventData) {
+      toast.error("Erro ao criar evento: " + (error?.message || ""));
+      setUploading(false);
+      return;
     }
+
+    // Upload selected photos
+    let successCount = 0;
+    for (const file of selectedFiles) {
+      const ext = file.name.split(".").pop();
+      const fileName = `${eventData.id}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+      const { error: uploadError } = await supabase.storage.from("event-photos").upload(fileName, file);
+      if (uploadError) { toast.error(`Erro ao enviar ${file.name}`); continue; }
+      const { data: urlData } = supabase.storage.from("event-photos").getPublicUrl(fileName);
+      const { error: insertError } = await supabase.from("gallery_photos").insert({
+        event_id: eventData.id,
+        image_url: urlData.publicUrl,
+        sort_order: successCount,
+      });
+      if (!insertError) successCount++;
+    }
+
+    toast.success(`Evento criado com ${successCount} foto(s)!`);
+    // Cleanup previews
+    previews.forEach((p) => URL.revokeObjectURL(p));
+    setSelectedFiles([]);
+    setPreviews([]);
+    setForm({ title: "", year: new Date().getFullYear().toString() });
+    setCreating(false);
+    setUploading(false);
+    fetchEvents();
   };
 
   const handleDeleteEvent = async (id: string) => {
@@ -249,8 +292,30 @@ const AdminEventManager = () => {
               className="bg-card border-border"
             />
           </div>
-          <Button onClick={handleCreateEvent} className="gradient-primary text-primary-foreground font-bold w-full">
-            Criar Evento
+          <div>
+            <Label>Fotos do Evento</Label>
+            <label className="cursor-pointer mt-2 block">
+              <input type="file" multiple accept="image/*" className="hidden" onChange={handleSelectFiles} disabled={uploading} />
+              <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary/50 transition-colors">
+                <Upload size={24} className="mx-auto mb-2 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">Clique para selecionar fotos</p>
+              </div>
+            </label>
+            {previews.length > 0 && (
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 mt-3">
+                {previews.map((src, i) => (
+                  <div key={i} className="relative aspect-square rounded-lg overflow-hidden border border-border">
+                    <img src={src} alt="" className="w-full h-full object-cover" />
+                    <button onClick={() => handleRemoveSelectedFile(i)} className="absolute top-1 right-1 h-6 w-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center">
+                      <X size={12} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <Button onClick={handleCreateEvent} disabled={uploading} className="gradient-primary text-primary-foreground font-bold w-full">
+            {uploading ? "Criando..." : "Criar Evento"}
           </Button>
         </div>
       </div>
