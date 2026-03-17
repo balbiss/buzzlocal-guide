@@ -50,6 +50,62 @@ export type Database = {
         }
         Relationships: []
       }
+      gallery_events: {
+        Row: {
+          created_at: string
+          id: string
+          sort_order: number
+          title: string
+          year: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          sort_order?: number
+          title: string
+          year: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          sort_order?: number
+          title?: string
+          year?: string
+        }
+        Relationships: []
+      }
+      gallery_photos: {
+        Row: {
+          created_at: string
+          event_id: string
+          id: string
+          image_url: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          event_id: string
+          id?: string
+          image_url: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          event_id?: string
+          id?: string
+          image_url?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gallery_photos_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "gallery_events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           id: string
