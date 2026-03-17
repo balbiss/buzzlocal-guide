@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import type { BlogPost, BlogPostInsert } from "@/types/blog";
 import { toast } from "sonner";
-import { Plus, Edit2, Trash2, LogOut, ArrowLeft, FileText, Image } from "lucide-react";
+import { Plus, Edit2, Trash2, LogOut, ArrowLeft, FileText, Image, Calendar } from "lucide-react";
 import logo from "@/assets/logo-jr.png";
 import { Link } from "react-router-dom";
 import AdminEventManager from "@/components/admin/AdminEventManager";
