@@ -8,11 +8,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import type { BlogPost, BlogPostInsert } from "@/types/blog";
 import { toast } from "sonner";
-import { Plus, Edit2, Trash2, LogOut, ArrowLeft } from "lucide-react";
+import { Plus, Edit2, Trash2, LogOut, ArrowLeft, FileText, Image } from "lucide-react";
 import logo from "@/assets/logo-jr.png";
 import { Link } from "react-router-dom";
+import AdminEventManager from "@/components/admin/AdminEventManager";
+
+type Tab = "blog" | "eventos";
 
 const Admin = () => {
+  const [activeTab, setActiveTab] = useState<Tab>("blog");
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [editing, setEditing] = useState<BlogPost | null>(null);
   const [creating, setCreating] = useState(false);
@@ -141,6 +145,11 @@ const Admin = () => {
 
   const showForm = creating || editing;
 
+  const tabs: { key: Tab; label: string; icon: React.ReactNode }[] = [
+    { key: "blog", label: "Blog", icon: <FileText size={16} /> },
+    { key: "eventos", label: "Eventos", icon: <Image size={16} /> },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border bg-card">
@@ -157,130 +166,156 @@ const Admin = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8 max-w-4xl">
-        {!showForm ? (
-          <>
-            <div className="flex items-center justify-between mb-8">
-              <h1 className="text-2xl font-bold text-foreground">Posts do Blog</h1>
-              <Button
-                onClick={() => { resetForm(); setCreating(true); }}
-                className="gradient-primary text-primary-foreground font-bold gap-2"
-              >
-                <Plus size={18} /> Novo Post
-              </Button>
-            </div>
+      {/* Tabs */}
+      <div className="border-b border-border bg-card">
+        <div className="container mx-auto px-4 max-w-4xl flex gap-1">
+          {tabs.map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => { setActiveTab(tab.key); resetForm(); }}
+              className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
+                activeTab === tab.key
+                  ? "border-primary text-primary"
+                  : "border-transparent text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {tab.icon}
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </div>
 
-            {loading ? (
-              <div className="space-y-3">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="h-16 bg-card rounded-lg animate-pulse" />
-                ))}
-              </div>
-            ) : posts.length === 0 ? (
-              <p className="text-muted-foreground text-center py-12">Nenhum post criado.</p>
-            ) : (
-              <div className="space-y-3">
-                {posts.map((post) => (
-                  <div
-                    key={post.id}
-                    className="bg-card border border-border rounded-lg p-4 flex items-center justify-between gap-4"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-foreground truncate">{post.title}</h3>
-                      <p className="text-xs text-muted-foreground">
-                        {post.published ? "✅ Publicado" : "📝 Rascunho"} · {new Date(post.created_at).toLocaleDateString("pt-BR")}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button variant="ghost" size="sm" onClick={() => handleEdit(post)}>
-                        <Edit2 size={16} />
-                      </Button>
-                      <Button variant="ghost" size="sm" onClick={() => handleDelete(post.id)} className="text-destructive">
-                        <Trash2 size={16} />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </>
+      <main className="container mx-auto px-4 py-8 max-w-4xl">
+        {activeTab === "eventos" ? (
+          <AdminEventManager />
         ) : (
           <>
-            <Button variant="ghost" size="sm" onClick={resetForm} className="gap-2 mb-6 text-muted-foreground">
-              <ArrowLeft size={16} /> Voltar
-            </Button>
+            {!showForm ? (
+              <>
+                <div className="flex items-center justify-between mb-8">
+                  <h1 className="text-2xl font-bold text-foreground">Posts do Blog</h1>
+                  <Button
+                    onClick={() => { resetForm(); setCreating(true); }}
+                    className="gradient-primary text-primary-foreground font-bold gap-2"
+                  >
+                    <Plus size={18} /> Novo Post
+                  </Button>
+                </div>
 
-            <h2 className="text-2xl font-bold text-foreground mb-6">
-              {editing ? "Editar Post" : "Novo Post"}
-            </h2>
+                {loading ? (
+                  <div className="space-y-3">
+                    {[1, 2, 3].map((i) => (
+                      <div key={i} className="h-16 bg-card rounded-lg animate-pulse" />
+                    ))}
+                  </div>
+                ) : posts.length === 0 ? (
+                  <p className="text-muted-foreground text-center py-12">Nenhum post criado.</p>
+                ) : (
+                  <div className="space-y-3">
+                    {posts.map((post) => (
+                      <div
+                        key={post.id}
+                        className="bg-card border border-border rounded-lg p-4 flex items-center justify-between gap-4"
+                      >
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-foreground truncate">{post.title}</h3>
+                          <p className="text-xs text-muted-foreground">
+                            {post.published ? "✅ Publicado" : "📝 Rascunho"} · {new Date(post.created_at).toLocaleDateString("pt-BR")}
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Button variant="ghost" size="sm" onClick={() => handleEdit(post)}>
+                            <Edit2 size={16} />
+                          </Button>
+                          <Button variant="ghost" size="sm" onClick={() => handleDelete(post.id)} className="text-destructive">
+                            <Trash2 size={16} />
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <Button variant="ghost" size="sm" onClick={resetForm} className="gap-2 mb-6 text-muted-foreground">
+                  <ArrowLeft size={16} /> Voltar
+                </Button>
 
-            <div className="space-y-5">
-              <div>
-                <Label>Título</Label>
-                <Input
-                  value={form.title}
-                  onChange={(e) => handleTitleChange(e.target.value)}
-                  placeholder="Título do artigo"
-                  className="bg-card border-border"
-                />
-              </div>
+                <h2 className="text-2xl font-bold text-foreground mb-6">
+                  {editing ? "Editar Post" : "Novo Post"}
+                </h2>
 
-              <div>
-                <Label>Slug</Label>
-                <Input
-                  value={form.slug}
-                  onChange={(e) => setForm((f) => ({ ...f, slug: e.target.value }))}
-                  placeholder="url-do-artigo"
-                  className="bg-card border-border"
-                />
-              </div>
+                <div className="space-y-5">
+                  <div>
+                    <Label>Título</Label>
+                    <Input
+                      value={form.title}
+                      onChange={(e) => handleTitleChange(e.target.value)}
+                      placeholder="Título do artigo"
+                      className="bg-card border-border"
+                    />
+                  </div>
 
-              <div>
-                <Label>Resumo</Label>
-                <Input
-                  value={form.excerpt || ""}
-                  onChange={(e) => setForm((f) => ({ ...f, excerpt: e.target.value }))}
-                  placeholder="Breve descrição do artigo"
-                  className="bg-card border-border"
-                />
-              </div>
+                  <div>
+                    <Label>Slug</Label>
+                    <Input
+                      value={form.slug}
+                      onChange={(e) => setForm((f) => ({ ...f, slug: e.target.value }))}
+                      placeholder="url-do-artigo"
+                      className="bg-card border-border"
+                    />
+                  </div>
 
-              <div>
-                <Label>URL da imagem de capa</Label>
-                <Input
-                  value={form.cover_image_url || ""}
-                  onChange={(e) => setForm((f) => ({ ...f, cover_image_url: e.target.value }))}
-                  placeholder="https://..."
-                  className="bg-card border-border"
-                />
-              </div>
+                  <div>
+                    <Label>Resumo</Label>
+                    <Input
+                      value={form.excerpt || ""}
+                      onChange={(e) => setForm((f) => ({ ...f, excerpt: e.target.value }))}
+                      placeholder="Breve descrição do artigo"
+                      className="bg-card border-border"
+                    />
+                  </div>
 
-              <div>
-                <Label>Conteúdo</Label>
-                <Textarea
-                  value={form.content}
-                  onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))}
-                  placeholder="Escreva o conteúdo do artigo..."
-                  className="bg-card border-border min-h-[300px]"
-                />
-              </div>
+                  <div>
+                    <Label>URL da imagem de capa</Label>
+                    <Input
+                      value={form.cover_image_url || ""}
+                      onChange={(e) => setForm((f) => ({ ...f, cover_image_url: e.target.value }))}
+                      placeholder="https://..."
+                      className="bg-card border-border"
+                    />
+                  </div>
 
-              <div className="flex items-center gap-3">
-                <Switch
-                  checked={form.published}
-                  onCheckedChange={(checked) => setForm((f) => ({ ...f, published: checked }))}
-                />
-                <Label>Publicado</Label>
-              </div>
+                  <div>
+                    <Label>Conteúdo</Label>
+                    <Textarea
+                      value={form.content}
+                      onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))}
+                      placeholder="Escreva o conteúdo do artigo..."
+                      className="bg-card border-border min-h-[300px]"
+                    />
+                  </div>
 
-              <Button
-                onClick={handleSave}
-                disabled={saving}
-                className="gradient-primary text-primary-foreground font-bold w-full"
-              >
-                {saving ? "Salvando..." : editing ? "Atualizar Post" : "Criar Post"}
-              </Button>
-            </div>
+                  <div className="flex items-center gap-3">
+                    <Switch
+                      checked={form.published}
+                      onCheckedChange={(checked) => setForm((f) => ({ ...f, published: checked }))}
+                    />
+                    <Label>Publicado</Label>
+                  </div>
+
+                  <Button
+                    onClick={handleSave}
+                    disabled={saving}
+                    className="gradient-primary text-primary-foreground font-bold w-full"
+                  >
+                    {saving ? "Salvando..." : editing ? "Atualizar Post" : "Criar Post"}
+                  </Button>
+                </div>
+              </>
+            )}
           </>
         )}
       </main>

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 import alfredoRocha2017 from "@/assets/alfredo-rocha-2017.avif";
 import odontologiaUnivap2018 from "@/assets/odontologia-univap-2018.avif";
 import lyotoMachida2019 from "@/assets/lyoto-machida-2019.png";
@@ -338,6 +339,39 @@ const galleryItems: GalleryItem[] = [
 const GallerySection = () => {
   const [selected, setSelected] = useState<GalleryItem | null>(null);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [dbEvents, setDbEvents] = useState<GalleryItem[]>([]);
+
+  useEffect(() => {
+    const fetchDbEvents = async () => {
+      const { data: events } = await supabase
+        .from("gallery_events")
+        .select("*")
+        .order("sort_order", { ascending: true });
+      
+      if (!events || events.length === 0) return;
+
+      const dbItems: GalleryItem[] = [];
+      for (const event of events) {
+        const { data: photos } = await supabase
+          .from("gallery_photos")
+          .select("*")
+          .eq("event_id", event.id)
+          .order("sort_order", { ascending: true });
+        
+        if (photos && photos.length > 0) {
+          dbItems.push({
+            title: event.title,
+            year: event.year,
+            images: photos.map((p) => p.image_url),
+          });
+        }
+      }
+      setDbEvents(dbItems);
+    };
+    fetchDbEvents();
+  }, []);
+
+  const allItems = [...dbEvents, ...galleryItems];
 
   const openLightbox = (item: GalleryItem, index = 0) => {
     setSelected(item);
@@ -369,7 +403,7 @@ const GallerySection = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          {galleryItems.map((item, i) => (
+          {allItems.map((item, i) => (
             <motion.button
               key={item.title}
               initial={{ opacity: 0, y: 20 }}
