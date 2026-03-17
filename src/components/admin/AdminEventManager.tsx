@@ -292,8 +292,30 @@ const AdminEventManager = () => {
               className="bg-card border-border"
             />
           </div>
-          <Button onClick={handleCreateEvent} className="gradient-primary text-primary-foreground font-bold w-full">
-            Criar Evento
+          <div>
+            <Label>Fotos do Evento</Label>
+            <label className="cursor-pointer mt-2 block">
+              <input type="file" multiple accept="image/*" className="hidden" onChange={handleSelectFiles} disabled={uploading} />
+              <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary/50 transition-colors">
+                <Upload size={24} className="mx-auto mb-2 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">Clique para selecionar fotos</p>
+              </div>
+            </label>
+            {previews.length > 0 && (
+              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 mt-3">
+                {previews.map((src, i) => (
+                  <div key={i} className="relative aspect-square rounded-lg overflow-hidden border border-border">
+                    <img src={src} alt="" className="w-full h-full object-cover" />
+                    <button onClick={() => handleRemoveSelectedFile(i)} className="absolute top-1 right-1 h-6 w-6 rounded-full bg-destructive text-destructive-foreground flex items-center justify-center">
+                      <X size={12} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <Button onClick={handleCreateEvent} disabled={uploading} className="gradient-primary text-primary-foreground font-bold w-full">
+            {uploading ? "Criando..." : "Criar Evento"}
           </Button>
         </div>
       </div>
