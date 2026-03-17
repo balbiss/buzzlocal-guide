@@ -1,54 +1,54 @@
 import { Calendar, MapPin, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import eventoImg from "@/assets/vendedor-sonhos.jpeg";
+import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 
 const WHATSAPP_URL = "https://wa.me/5511975858999?text=";
 
-const events = [
-  {
-    id: 1,
-    title: "O Vendedor de Sonhos",
-    date: "13/03/2026",
-    city: "Lorena/SP",
-    image: eventoImg,
-    whatsappMessage: "Olá! Quero participar do evento O Vendedor de Sonhos em Lorena!",
-  },
-  {
-    id: 2,
-    title: "O Vendedor de Sonhos",
-    date: "14/03/2026",
-    city: "São José dos Campos/SP",
-    image: eventoImg,
-    whatsappMessage: "Olá! Quero participar do evento O Vendedor de Sonhos em São José dos Campos!",
-  },
-  {
-    id: 3,
-    title: "O Vendedor de Sonhos",
-    date: "27/03/2026",
-    city: "Ubatuba/SP",
-    image: eventoImg,
-    whatsappMessage: "Olá! Quero participar do evento O Vendedor de Sonhos em Ubatuba!",
-  },
-];
+type UpcomingEvent = {
+  id: string;
+  title: string;
+  event_date: string;
+  city: string;
+  image_url: string;
+  whatsapp_message: string;
+};
 
 const EventsSection = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const [events, setEvents] = useState<UpcomingEvent[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const { data } = await supabase
+        .from("upcoming_events")
+        .select("*")
+        .eq("published", true)
+        .order("sort_order", { ascending: true });
+      setEvents((data as UpcomingEvent[]) || []);
+      setLoading(false);
+    };
+    fetchEvents();
+  }, []);
 
   useEffect(() => {
     if (!api) return;
     setCurrent(api.selectedScrollSnap());
     api.on("select", () => setCurrent(api.selectedScrollSnap()));
   }, [api]);
+
+  if (loading) return null;
+  if (events.length === 0) return null;
 
   return (
     <section id="eventos" className="py-20">
@@ -81,21 +81,18 @@ const EventsSection = () => {
               {events.map((event) => (
                 <CarouselItem key={event.id}>
                   <a
-                    href={WHATSAPP_URL + encodeURIComponent(event.whatsappMessage)}
+                    href={WHATSAPP_URL + encodeURIComponent(event.whatsapp_message)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block group"
                   >
-                    <div className="relative aspect-[16/9] md:aspect-[16/9] rounded-3xl overflow-hidden shadow-card border border-border hover:shadow-card-hover transition-all">
+                    <div className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-card border border-border hover:shadow-card-hover transition-all">
                       <img
-                        src={event.image}
+                        src={event.image_url}
                         alt={event.title}
                         className="w-full h-full object-contain bg-background group-hover:scale-105 transition-transform duration-500"
                       />
-                      {/* Overlay gradient */}
                       <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
-
-                      {/* Content overlay */}
                       <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
                         <div>
                           <h3 className="text-xl md:text-2xl font-extrabold text-foreground mb-2">
@@ -104,7 +101,7 @@ const EventsSection = () => {
                           <div className="flex items-center gap-4 flex-wrap">
                             <div className="flex items-center gap-2 text-sm">
                               <Calendar size={15} className="text-primary" />
-                              <span className="font-bold text-foreground">{event.date}</span>
+                              <span className="font-bold text-foreground">{event.event_date}</span>
                             </div>
                             <div className="flex items-center gap-2 text-sm">
                               <MapPin size={15} className="text-primary" />
@@ -140,7 +137,6 @@ const EventsSection = () => {
             </Button>
           </Carousel>
 
-          {/* Dots */}
           <div className="flex justify-center gap-2 mt-6">
             {events.map((_, i) => (
               <button

@@ -12,8 +12,9 @@ import { Plus, Edit2, Trash2, LogOut, ArrowLeft, FileText, Image } from "lucide-
 import logo from "@/assets/logo-jr.png";
 import { Link } from "react-router-dom";
 import AdminEventManager from "@/components/admin/AdminEventManager";
+import AdminUpcomingEvents from "@/components/admin/AdminUpcomingEvents";
 
-type Tab = "blog" | "eventos";
+type Tab = "blog" | "proximos" | "realizados";
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState<Tab>("blog");
