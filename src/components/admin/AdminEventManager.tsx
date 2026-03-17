@@ -29,6 +29,8 @@ const AdminEventManager = () => {
   const [photos, setPhotos] = useState<GalleryPhoto[]>([]);
   const [uploading, setUploading] = useState(false);
   const [form, setForm] = useState({ title: "", year: new Date().getFullYear().toString() });
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [previews, setPreviews] = useState<string[]>([]);
 
   const fetchEvents = useCallback(async () => {
     const { data } = await supabase
