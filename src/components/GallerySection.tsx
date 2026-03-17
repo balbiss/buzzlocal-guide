@@ -2,147 +2,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import alfredoRocha2017 from "@/assets/alfredo-rocha-2017.avif";
-import odontologiaUnivap2018 from "@/assets/odontologia-univap-2018.avif";
-import lyotoMachida2019 from "@/assets/lyoto-machida-2019.png";
-import lyotoMachidaCampinas2019 from "@/assets/lyoto-machida-campinas-2019.png";
-import univap8390 from "@/assets/univap-8390-1.avif";
-import univap8391 from "@/assets/univap-8391.avif";
-import univap8391b from "@/assets/univap-8391-1.avif";
-import univap8392 from "@/assets/univap-8392.avif";
-import univap8392b from "@/assets/univap-8392-1.avif";
-import univap8393 from "@/assets/univap-8393.avif";
-import univap8393b from "@/assets/univap-8393-1.avif";
-import univap8394 from "@/assets/univap-8394.avif";
-import univap8394b from "@/assets/univap-8394-1.avif";
-import univap8395 from "@/assets/univap-8395.avif";
-import alfredo8401 from "@/assets/alfredo-8401.avif";
-import alfredo8402 from "@/assets/alfredo-8402.avif";
-import alfredo8403 from "@/assets/alfredo-8403.avif";
-import alfredo8404 from "@/assets/alfredo-8404.avif";
-import alfredo8405 from "@/assets/alfredo-8405.avif";
-import alfredo8406 from "@/assets/alfredo-8406.avif";
-import alfredo8407 from "@/assets/alfredo-8407.avif";
-import alfredo8408 from "@/assets/alfredo-8408.avif";
-import alfredo8409 from "@/assets/alfredo-8409.avif";
-import alfredo8410 from "@/assets/alfredo-8410.avif";
-import alfredo8411 from "@/assets/alfredo-8411.avif";
-import alfredo8412 from "@/assets/alfredo-8412.avif";
-import alfredo8413 from "@/assets/alfredo-8413.avif";
-import alfredo8415 from "@/assets/alfredo-8415.avif";
-import alfredo8416 from "@/assets/alfredo-8416.avif";
-import alfredo8417 from "@/assets/alfredo-8417.avif";
-import alfredo8419 from "@/assets/alfredo-8419.avif";
-import alfredo8420 from "@/assets/alfredo-8420.avif";
-import alfredo8424 from "@/assets/alfredo-8424.avif";
-import alfredo8425 from "@/assets/alfredo-8425.avif";
-import machida8344 from "@/assets/machida-8344.avif";
-import machida8345 from "@/assets/machida-8345.avif";
-import machida8346 from "@/assets/machida-8346.avif";
-import machida8347 from "@/assets/machida-8347.avif";
-import machida8348 from "@/assets/machida-8348.avif";
-import machida8349 from "@/assets/machida-8349.avif";
-import machida8350 from "@/assets/machida-8350.avif";
-import machida8351 from "@/assets/machida-8351.avif";
-import machida8352 from "@/assets/machida-8352.avif";
-import machida8353 from "@/assets/machida-8353.avif";
-import mestreMachida2019 from "@/assets/mestre-machida-2019.avif";
-import lyotoJac8316 from "@/assets/lyoto-jac-8316.png";
-import lyotoJac8320 from "@/assets/lyoto-jac-8320.png";
-import lyotoJac8322 from "@/assets/lyoto-jac-8322.png";
-import lyotoJac8323 from "@/assets/lyoto-jac-8323.png";
-import lyotoJac8324 from "@/assets/lyoto-jac-8324.png";
-import lyotoJac8326 from "@/assets/lyoto-jac-8326.png";
-import lyotoJac8327 from "@/assets/lyoto-jac-8327.png";
-import lyotoJac8328 from "@/assets/lyoto-jac-8328.png";
-import lyotoJac8329 from "@/assets/lyoto-jac-8329.png";
-import lyotoJac8330 from "@/assets/lyoto-jac-8330.png";
-import lyotoJac8331 from "@/assets/lyoto-jac-8331.png";
-import lyotoJac8334 from "@/assets/lyoto-jac-8334.png";
-import lyotoJac8335 from "@/assets/lyoto-jac-8335.png";
-import lyotoJac8337 from "@/assets/lyoto-jac-8337.png";
-import lyotoJac8338 from "@/assets/lyoto-jac-8338.png";
-import lyotoJac8339 from "@/assets/lyoto-jac-8339.png";
-import lyotoJac8340 from "@/assets/lyoto-jac-8340.png";
-import lyotoJac8341 from "@/assets/lyoto-jac-8341.png";
-import lyotoJac8342 from "@/assets/lyoto-jac-8342.png";
-import lyotoJac8343 from "@/assets/lyoto-jac-8343.png";
-import lyotoCamp8278 from "@/assets/lyoto-camp-8278.png";
-import lyotoCamp8279 from "@/assets/lyoto-camp-8279.png";
-import lyotoCamp8280 from "@/assets/lyoto-camp-8280.png";
-import lyotoCamp8282 from "@/assets/lyoto-camp-8282.png";
-import lyotoCamp8283 from "@/assets/lyoto-camp-8283.png";
-import lyotoCamp8284 from "@/assets/lyoto-camp-8284.png";
-import lyotoCamp8285 from "@/assets/lyoto-camp-8285.png";
-import lyotoCamp8286 from "@/assets/lyoto-camp-8286.png";
-import lyotoCamp8287 from "@/assets/lyoto-camp-8287.png";
-import lyotoCamp8289 from "@/assets/lyoto-camp-8289.png";
-import lyotoCamp8291 from "@/assets/lyoto-camp-8291.png";
-import lyotoCamp8292 from "@/assets/lyoto-camp-8292.png";
-import lyotoCamp8294 from "@/assets/lyoto-camp-8294.png";
-import lyotoCamp8295 from "@/assets/lyoto-camp-8295.png";
-import lyotoCamp8296 from "@/assets/lyoto-camp-8296.png";
-import lyotoCamp8297 from "@/assets/lyoto-camp-8297.png";
-import lyotoCamp8298 from "@/assets/lyoto-camp-8298.png";
-import lyotoCamp8299 from "@/assets/lyoto-camp-8299.png";
-import lyotoCamp8300 from "@/assets/lyoto-camp-8300.png";
-import lyotoCamp8301 from "@/assets/lyoto-camp-8301.png";
-import lyotoCamp8303 from "@/assets/lyoto-camp-8303.png";
-import lyotoCamp8304 from "@/assets/lyoto-camp-8304.png";
-import lyotoCamp8305 from "@/assets/lyoto-camp-8305.png";
-import lyotoCamp8306 from "@/assets/lyoto-camp-8306.png";
-import lyotoCamp8307 from "@/assets/lyoto-camp-8307.png";
-import lyotoCamp8308 from "@/assets/lyoto-camp-8308.png";
-import lyotoCamp8309 from "@/assets/lyoto-camp-8309.png";
-import lyotoCamp8310 from "@/assets/lyoto-camp-8310.png";
-import lyotoCamp8311 from "@/assets/lyoto-camp-8311.png";
-import lyotoCamp8312 from "@/assets/lyoto-camp-8312.png";
-import teatroHmih01 from "@/assets/teatro-hmih-01.jpeg";
-import teatroHmih02 from "@/assets/teatro-hmih-02.jpeg";
-import teatroHmih03 from "@/assets/teatro-hmih-03.jpeg";
-import teatroHmih04 from "@/assets/teatro-hmih-04.jpeg";
-import teatroHmih05 from "@/assets/teatro-hmih-05.jpeg";
-import teatroHmih06 from "@/assets/teatro-hmih-06.jpeg";
-import teatroHmih07 from "@/assets/teatro-hmih-07.jpeg";
-import teatroHmih08 from "@/assets/teatro-hmih-08.jpeg";
-import teatroHmih09 from "@/assets/teatro-hmih-09.jpeg";
-import teatroHmih10 from "@/assets/teatro-hmih-10.jpeg";
-import teatroHmih11 from "@/assets/teatro-hmih-11.jpeg";
-import teatroHmih12 from "@/assets/teatro-hmih-12.jpeg";
-import teatroHmih13 from "@/assets/teatro-hmih-13.jpeg";
-import teatroHmih14 from "@/assets/teatro-hmih-14.jpeg";
-import teatroHmih15 from "@/assets/teatro-hmih-15.jpeg";
-import teatroHmih16 from "@/assets/teatro-hmih-16.jpeg";
-import teatroHmih17 from "@/assets/teatro-hmih-17.jpeg";
-import teatroHmih18 from "@/assets/teatro-hmih-18.jpeg";
-import teatroHmih19 from "@/assets/teatro-hmih-19.jpeg";
-import teatroHmih20 from "@/assets/teatro-hmih-20.jpeg";
-import teatroHmih21 from "@/assets/teatro-hmih-21.jpeg";
-import teatroHmih22 from "@/assets/teatro-hmih-22.jpeg";
-import teatroHmih23 from "@/assets/teatro-hmih-23.jpeg";
-import teatroHmih24 from "@/assets/teatro-hmih-24.jpeg";
-import teatroHmih25 from "@/assets/teatro-hmih-25.jpeg";
-import teatroHmih26 from "@/assets/teatro-hmih-26.jpeg";
-import teatroHmih27 from "@/assets/teatro-hmih-27.jpeg";
-import teatroHmih28 from "@/assets/teatro-hmih-28.jpeg";
-import teatroHmih29 from "@/assets/teatro-hmih-29.jpeg";
-import teatroHmih30 from "@/assets/teatro-hmih-30.jpeg";
-import teatroHmih31 from "@/assets/teatro-hmih-31.jpeg";
-import teatroHmih32 from "@/assets/teatro-hmih-32.jpeg";
-import teatroHmih33 from "@/assets/teatro-hmih-33.jpeg";
-import teatroHmih34 from "@/assets/teatro-hmih-34.jpeg";
-import teatroHmih35 from "@/assets/teatro-hmih-35.jpeg";
-import teatroHmih36 from "@/assets/teatro-hmih-36.jpeg";
-import machidaSjc01 from "@/assets/machida-sjc-01.jpeg";
-import machidaSjc02 from "@/assets/machida-sjc-02.jpeg";
-import machidaSjc03 from "@/assets/machida-sjc-03.jpeg";
-import machidaSjc04 from "@/assets/machida-sjc-04.jpeg";
-import machidaSjc05 from "@/assets/machida-sjc-05.jpeg";
-import machidaSjc06 from "@/assets/machida-sjc-06.jpeg";
-import machidaSjc07 from "@/assets/machida-sjc-07.jpeg";
-import machidaSjc08 from "@/assets/machida-sjc-08.jpeg";
-import machidaSjc09 from "@/assets/machida-sjc-09.jpeg";
-import machidaSjc10 from "@/assets/machida-sjc-10.jpeg";
 
 type GalleryItem = {
   title: string;
@@ -150,228 +9,45 @@ type GalleryItem = {
   images: string[];
 };
 
-const galleryItems: GalleryItem[] = [
-  {
-    title: "O Homem Mais Inteligente da História — Teatro",
-    year: "2025",
-    images: [
-      teatroHmih04,
-      teatroHmih01,
-      teatroHmih02,
-      teatroHmih03,
-      teatroHmih05,
-      teatroHmih06,
-      teatroHmih07,
-      teatroHmih08,
-      teatroHmih09,
-      teatroHmih10,
-      teatroHmih11,
-      teatroHmih12,
-      teatroHmih13,
-      teatroHmih14,
-      teatroHmih15,
-      teatroHmih16,
-      teatroHmih17,
-      teatroHmih18,
-      teatroHmih19,
-      teatroHmih20,
-      teatroHmih21,
-      teatroHmih22,
-      teatroHmih23,
-      teatroHmih24,
-      teatroHmih25,
-      teatroHmih26,
-      teatroHmih27,
-      teatroHmih28,
-      teatroHmih29,
-      teatroHmih30,
-      teatroHmih31,
-      teatroHmih32,
-      teatroHmih33,
-      teatroHmih34,
-      teatroHmih35,
-      teatroHmih36,
-    ],
-  },
-  {
-    title: "Lyoto Machida e Vinicio — Jacareí",
-    year: "2019",
-    images: [
-      lyotoMachida2019,
-      lyotoJac8316,
-      lyotoJac8320,
-      lyotoJac8322,
-      lyotoJac8323,
-      lyotoJac8324,
-      lyotoJac8326,
-      lyotoJac8327,
-      lyotoJac8328,
-      lyotoJac8329,
-      lyotoJac8330,
-      lyotoJac8331,
-      lyotoJac8334,
-      lyotoJac8335,
-      lyotoJac8337,
-      lyotoJac8338,
-      lyotoJac8339,
-      lyotoJac8340,
-      lyotoJac8341,
-      lyotoJac8342,
-      lyotoJac8343,
-    ],
-  },
-  {
-    title: "Lyoto Machida e Vinicio — Campinas",
-    year: "2019",
-    images: [
-      lyotoMachidaCampinas2019,
-      lyotoCamp8278,
-      lyotoCamp8279,
-      lyotoCamp8280,
-      lyotoCamp8282,
-      lyotoCamp8283,
-      lyotoCamp8284,
-      lyotoCamp8285,
-      lyotoCamp8286,
-      lyotoCamp8287,
-      lyotoCamp8289,
-      lyotoCamp8291,
-      lyotoCamp8292,
-      lyotoCamp8294,
-      lyotoCamp8295,
-      lyotoCamp8296,
-      lyotoCamp8297,
-      lyotoCamp8298,
-      lyotoCamp8299,
-      lyotoCamp8300,
-      lyotoCamp8301,
-      lyotoCamp8303,
-      lyotoCamp8304,
-      lyotoCamp8305,
-      lyotoCamp8306,
-      lyotoCamp8307,
-      lyotoCamp8308,
-      lyotoCamp8309,
-      lyotoCamp8310,
-      lyotoCamp8311,
-      lyotoCamp8312,
-    ],
-  },
-  {
-    title: "Mestre Machida Campinas",
-    year: "2019",
-    images: [
-      mestreMachida2019,
-      machida8344,
-      machida8345,
-      machida8346,
-      machida8347,
-      machida8348,
-      machida8349,
-      machida8350,
-      machida8351,
-      machida8352,
-      machida8353,
-    ],
-  },
-  {
-    title: "Mestre Machida São José dos Campos",
-    year: "2018",
-    images: [
-      machidaSjc01,
-      machidaSjc02,
-      machidaSjc03,
-      machidaSjc04,
-      machidaSjc05,
-      machidaSjc06,
-      machidaSjc07,
-      machidaSjc08,
-      machidaSjc09,
-      machidaSjc10,
-    ],
-  },
-  {
-    title: "Odontologia Univap",
-    year: "2018",
-    images: [
-      odontologiaUnivap2018,
-      univap8390,
-      univap8391,
-      univap8391b,
-      univap8392,
-      univap8392b,
-      univap8393,
-      univap8393b,
-      univap8394,
-      univap8394b,
-      univap8395,
-    ],
-  },
-  {
-    title: "Alfredo Rocha Teatro Colinas",
-    year: "2017",
-    images: [
-      alfredoRocha2017,
-      alfredo8401,
-      alfredo8402,
-      alfredo8403,
-      alfredo8404,
-      alfredo8405,
-      alfredo8406,
-      alfredo8407,
-      alfredo8408,
-      alfredo8409,
-      alfredo8410,
-      alfredo8411,
-      alfredo8412,
-      alfredo8413,
-      alfredo8415,
-      alfredo8416,
-      alfredo8417,
-      alfredo8419,
-      alfredo8420,
-      alfredo8424,
-      alfredo8425,
-    ],
-  },
-];
-
 const GallerySection = () => {
   const [selected, setSelected] = useState<GalleryItem | null>(null);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const [dbEvents, setDbEvents] = useState<GalleryItem[]>([]);
+  const [allItems, setAllItems] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchDbEvents = async () => {
+    const fetchEvents = async () => {
       const { data: events } = await supabase
         .from("gallery_events")
         .select("*")
         .order("sort_order", { ascending: true });
-      
-      if (!events || events.length === 0) return;
 
-      const dbItems: GalleryItem[] = [];
+      if (!events || events.length === 0) {
+        setLoading(false);
+        return;
+      }
+
+      const items: GalleryItem[] = [];
       for (const event of events) {
         const { data: photos } = await supabase
           .from("gallery_photos")
           .select("*")
           .eq("event_id", event.id)
           .order("sort_order", { ascending: true });
-        
+
         if (photos && photos.length > 0) {
-          dbItems.push({
+          items.push({
             title: event.title,
             year: event.year,
             images: photos.map((p) => p.image_url),
           });
         }
       }
-      setDbEvents(dbItems);
+      setAllItems(items);
+      setLoading(false);
     };
-    fetchDbEvents();
+    fetchEvents();
   }, []);
-
-  const allItems = [...dbEvents, ...galleryItems];
 
   const openLightbox = (item: GalleryItem, index = 0) => {
     setSelected(item);
@@ -392,6 +68,10 @@ const GallerySection = () => {
     if (!selected) return;
     setPhotoIndex((prev) => (prev + 1) % selected.images.length);
   };
+
+  if (!loading && allItems.length === 0) return null;
+
+
 
   return (
     <section id="galeria" className="py-20 bg-surface-elevated">

@@ -8,12 +8,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import type { BlogPost, BlogPostInsert } from "@/types/blog";
 import { toast } from "sonner";
-import { Plus, Edit2, Trash2, LogOut, ArrowLeft, FileText, Image } from "lucide-react";
+import { Plus, Edit2, Trash2, LogOut, ArrowLeft, FileText, Image, Calendar } from "lucide-react";
 import logo from "@/assets/logo-jr.png";
 import { Link } from "react-router-dom";
 import AdminEventManager from "@/components/admin/AdminEventManager";
+import AdminUpcomingEvents from "@/components/admin/AdminUpcomingEvents";
 
-type Tab = "blog" | "eventos";
+type Tab = "blog" | "proximos" | "realizados";
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState<Tab>("blog");
@@ -147,7 +148,8 @@ const Admin = () => {
 
   const tabs: { key: Tab; label: string; icon: React.ReactNode }[] = [
     { key: "blog", label: "Blog", icon: <FileText size={16} /> },
-    { key: "eventos", label: "Eventos", icon: <Image size={16} /> },
+    { key: "proximos", label: "Próximos Eventos", icon: <Calendar size={16} /> },
+    { key: "realizados", label: "Eventos Realizados", icon: <Image size={16} /> },
   ];
 
   return (
@@ -187,8 +189,10 @@ const Admin = () => {
       </div>
 
       <main className="container mx-auto px-4 py-8 max-w-4xl">
-        {activeTab === "eventos" ? (
+        {activeTab === "realizados" ? (
           <AdminEventManager />
+        ) : activeTab === "proximos" ? (
+          <AdminUpcomingEvents />
         ) : (
           <>
             {!showForm ? (
