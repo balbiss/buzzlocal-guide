@@ -106,6 +106,42 @@ export type Database = {
           },
         ]
       }
+      upcoming_events: {
+        Row: {
+          city: string
+          created_at: string
+          event_date: string
+          id: string
+          image_url: string
+          published: boolean
+          sort_order: number
+          title: string
+          whatsapp_message: string
+        }
+        Insert: {
+          city: string
+          created_at?: string
+          event_date: string
+          id?: string
+          image_url: string
+          published?: boolean
+          sort_order?: number
+          title: string
+          whatsapp_message?: string
+        }
+        Update: {
+          city?: string
+          created_at?: string
+          event_date?: string
+          id?: string
+          image_url?: string
+          published?: boolean
+          sort_order?: number
+          title?: string
+          whatsapp_message?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
