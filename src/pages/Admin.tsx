@@ -191,7 +191,9 @@ const Admin = () => {
       </div>
 
       <main className="container mx-auto px-4 py-8 max-w-4xl">
-        {activeTab === "realizados" ? (
+        {activeTab === "redes" ? (
+          <AdminSocialLinks />
+        ) : activeTab === "realizados" ? (
           <AdminEventManager />
         ) : activeTab === "proximos" ? (
           <AdminUpcomingEvents />
