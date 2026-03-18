@@ -211,11 +211,11 @@ const AdminUpcomingEvents = () => {
           </div>
 
           <div>
-            <Label>Mensagem do WhatsApp</Label>
+            <Label>Link do Evento</Label>
             <Input
-              value={form.whatsapp_message}
-              onChange={(e) => setForm((f) => ({ ...f, whatsapp_message: e.target.value }))}
-              placeholder="Olá! Quero participar do evento..."
+              value={form.ticket_url}
+              onChange={(e) => setForm((f) => ({ ...f, ticket_url: e.target.value }))}
+              placeholder="https://site-de-ingressos.com/evento"
               className="bg-card border-border"
             />
           </div>

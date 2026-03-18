@@ -79,7 +79,7 @@ const EventsSection = () => {
               {events.map((event) => (
                 <CarouselItem key={event.id}>
                   <a
-                    href={WHATSAPP_URL + encodeURIComponent(event.whatsapp_message)}
+                    href={event.ticket_url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block group"
