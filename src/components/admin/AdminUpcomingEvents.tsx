@@ -33,7 +33,7 @@ const emptyForm: FormState = {
   event_date: "",
   city: "",
   image_url: "",
-  whatsapp_message: "",
+  ticket_url: "",
   published: true,
 };
 
