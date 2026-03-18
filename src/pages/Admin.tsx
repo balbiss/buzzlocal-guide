@@ -151,6 +151,7 @@ const Admin = () => {
     { key: "blog", label: "Blog", icon: <FileText size={16} /> },
     { key: "proximos", label: "Próximos Eventos", icon: <Calendar size={16} /> },
     { key: "realizados", label: "Eventos Realizados", icon: <Image size={16} /> },
+    { key: "redes", label: "Redes Sociais", icon: <Share2 size={16} /> },
   ];
 
   return (
