@@ -73,7 +73,7 @@ const AdminUpcomingEvents = () => {
       event_date: event.event_date,
       city: event.city,
       image_url: event.image_url,
-      whatsapp_message: event.whatsapp_message,
+      ticket_url: event.ticket_url,
       published: event.published,
     });
   };
