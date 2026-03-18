@@ -24,7 +24,7 @@ type FormState = {
   event_date: string;
   city: string;
   image_url: string;
-  whatsapp_message: string;
+  ticket_url: string;
   published: boolean;
 };
 
