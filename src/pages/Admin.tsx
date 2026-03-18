@@ -13,6 +13,7 @@ import logo from "@/assets/logo-jr.png";
 import { Link } from "react-router-dom";
 import AdminEventManager from "@/components/admin/AdminEventManager";
 import AdminUpcomingEvents from "@/components/admin/AdminUpcomingEvents";
+import AdminSocialLinks from "@/components/admin/AdminSocialLinks";
 
 type Tab = "blog" | "proximos" | "realizados";
 
