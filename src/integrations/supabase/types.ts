@@ -136,8 +136,8 @@ export type Database = {
           image_url: string
           published: boolean
           sort_order: number
+          ticket_url: string
           title: string
-          whatsapp_message: string
         }
         Insert: {
           city: string
@@ -147,8 +147,8 @@ export type Database = {
           image_url: string
           published?: boolean
           sort_order?: number
+          ticket_url?: string
           title: string
-          whatsapp_message?: string
         }
         Update: {
           city?: string
@@ -158,8 +158,8 @@ export type Database = {
           image_url?: string
           published?: boolean
           sort_order?: number
+          ticket_url?: string
           title?: string
-          whatsapp_message?: string
         }
         Relationships: []
       }

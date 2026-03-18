@@ -1,0 +1,1 @@
+ALTER TABLE public.upcoming_events RENAME COLUMN whatsapp_message TO ticket_url;
