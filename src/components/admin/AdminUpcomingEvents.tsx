@@ -13,7 +13,7 @@ type UpcomingEvent = {
   event_date: string;
   city: string;
   image_url: string;
-  whatsapp_message: string;
+  ticket_url: string;
   sort_order: number;
   published: boolean;
   created_at: string;
