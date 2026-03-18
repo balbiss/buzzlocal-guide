@@ -11,15 +11,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
-const WHATSAPP_URL = "https://wa.me/5511975858999?text=";
-
 type UpcomingEvent = {
   id: string;
   title: string;
   event_date: string;
   city: string;
   image_url: string;
-  whatsapp_message: string;
+  ticket_url: string;
 };
 
 const EventsSection = () => {
