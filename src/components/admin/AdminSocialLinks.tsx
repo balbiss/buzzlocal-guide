@@ -1,12 +1,24 @@
 import { useEffect, useState } from "react";
-import { Mail, Phone } from "lucide-react";
-import logo from "@/assets/logo-jr.png";
 import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+import { Save, Loader2 } from "lucide-react";
 
 type SocialLink = {
+  id: string;
   platform: string;
   url: string;
   sort_order: number;
+};
+
+const platformLabels: Record<string, string> = {
+  instagram: "Instagram",
+  youtube: "YouTube",
+  facebook: "Facebook",
+  linkedin: "LinkedIn",
+  tiktok: "TikTok",
 };
 
 const platformIcons: Record<string, JSX.Element> = {
@@ -27,86 +39,92 @@ const platformIcons: Record<string, JSX.Element> = {
   ),
 };
 
-const platformLabels: Record<string, string> = {
-  instagram: "Instagram",
-  youtube: "YouTube",
-  facebook: "Facebook",
-  linkedin: "LinkedIn",
-  tiktok: "TikTok",
-};
-
-const Footer = () => {
-  const [socialLinks, setSocialLinks] = useState<SocialLink[]>([]);
+const AdminSocialLinks = () => {
+  const [links, setLinks] = useState<SocialLink[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    supabase
-      .from("social_links")
-      .select("platform, url, sort_order")
-      .order("sort_order")
-      .then(({ data }) => {
-        if (data) setSocialLinks(data as SocialLink[]);
-      });
+    fetchLinks();
   }, []);
 
-  const visibleLinks = socialLinks.filter((l) => l.url.trim() !== "");
+  const fetchLinks = async () => {
+    const { data } = await supabase
+      .from("social_links")
+      .select("*")
+      .order("sort_order");
+    setLinks((data as SocialLink[]) || []);
+    setLoading(false);
+  };
+
+  const handleUrlChange = (id: string, url: string) => {
+    setLinks((prev) => prev.map((l) => (l.id === id ? { ...l, url } : l)));
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    const updates = links.map((l) =>
+      supabase.from("social_links").update({ url: l.url }).eq("id", l.id)
+    );
+    const results = await Promise.all(updates);
+    const hasError = results.some((r) => r.error);
+    if (hasError) {
+      toast.error("Erro ao salvar alguns links");
+    } else {
+      toast.success("Links atualizados!");
+    }
+    setSaving(false);
+  };
+
+  if (loading) {
+    return (
+      <div className="space-y-3">
+        {[1, 2, 3].map((i) => (
+          <div key={i} className="h-16 bg-card rounded-lg animate-pulse" />
+        ))}
+      </div>
+    );
+  }
 
   return (
-    <footer className="bg-surface-sunken border-t border-border">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 sm:gap-10 mb-10">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <img src={logo} alt="JR Inovações" className="h-12 w-auto" />
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Fortalecendo o futuro através de ensinamentos reais. Desenvolvimento de Pessoas & Consultoria Empresarial.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-bold text-foreground text-sm mb-4">Contato</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <Mail size={15} className="text-primary shrink-0" />
-                <a href="mailto:jrinovacoes@gmail.com" className="hover:text-primary transition-colors">jrinovacoes@gmail.com</a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone size={15} className="text-primary shrink-0" />
-                <a href="tel:+5511975858999" className="hover:text-primary transition-colors">(11) 97585-8999</a>
-              </li>
-            </ul>
-          </div>
-
-          {visibleLinks.length > 0 && (
-            <div>
-              <h4 className="font-bold text-foreground text-sm mb-4">Redes Sociais</h4>
-              <ul className="space-y-3">
-                {visibleLinks.map((link) => (
-                  <li key={link.platform}>
-                    <a
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <span className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center shrink-0">
-                        {platformIcons[link.platform]}
-                      </span>
-                      {platformLabels[link.platform] || link.platform}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-
-        <div className="border-t border-border pt-6 text-center text-xs text-muted-foreground">
-          © 2026 JR INOVAÇÕES. Todos os direitos reservados.
-        </div>
+    <div>
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-2xl font-bold text-foreground">Redes Sociais</h1>
+        <Button
+          onClick={handleSave}
+          disabled={saving}
+          className="gradient-primary text-primary-foreground font-bold gap-2"
+        >
+          {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
+          Salvar
+        </Button>
       </div>
-    </footer>
+
+      <div className="space-y-4">
+        {links.map((link) => (
+          <div
+            key={link.id}
+            className="bg-card border border-border rounded-lg p-4 flex items-center gap-4"
+          >
+            <span className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center shrink-0 text-foreground">
+              {platformIcons[link.platform]}
+            </span>
+            <div className="flex-1">
+              <Label className="text-xs text-muted-foreground mb-1 block">
+                {platformLabels[link.platform] || link.platform}
+              </Label>
+              <Input
+                value={link.url}
+                onChange={(e) => handleUrlChange(link.id, e.target.value)}
+                placeholder={`https://${link.platform}.com/seu-perfil`}
+                className="bg-background border-border"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
-export default Footer;
+export default AdminSocialLinks;

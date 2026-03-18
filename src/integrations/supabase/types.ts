@@ -106,6 +106,27 @@ export type Database = {
           },
         ]
       }
+      social_links: {
+        Row: {
+          id: string
+          platform: string
+          sort_order: number
+          url: string
+        }
+        Insert: {
+          id?: string
+          platform: string
+          sort_order?: number
+          url?: string
+        }
+        Update: {
+          id?: string
+          platform?: string
+          sort_order?: number
+          url?: string
+        }
+        Relationships: []
+      }
       upcoming_events: {
         Row: {
           city: string
