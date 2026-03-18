@@ -15,7 +15,7 @@ import AdminEventManager from "@/components/admin/AdminEventManager";
 import AdminUpcomingEvents from "@/components/admin/AdminUpcomingEvents";
 import AdminSocialLinks from "@/components/admin/AdminSocialLinks";
 
-type Tab = "blog" | "proximos" | "realizados";
+type Tab = "blog" | "proximos" | "realizados" | "redes";
 
 const Admin = () => {
   const [activeTab, setActiveTab] = useState<Tab>("blog");
