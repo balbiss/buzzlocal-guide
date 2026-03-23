@@ -144,6 +144,18 @@ const AdminUpcomingEvents = () => {
     }
   };
 
+  const handleReorderEvents = useCallback(async (reordered: UpcomingEvent[]) => {
+    setEvents(reordered);
+    const updates = reordered.map((ev, i) =>
+      supabase.from("upcoming_events").update({ sort_order: i }).eq("id", ev.id)
+    );
+    await Promise.all(updates);
+    toast.success("Ordem atualizada!");
+  }, []);
+
+  const { dragIndex, overIndex, handleDragStart, handleDragOver, handleDrop, handleDragEnd } =
+    useDragReorder(events, handleReorderEvents);
+
   const showForm = creating || editing;
 
   if (showForm) {
@@ -236,18 +248,6 @@ const AdminUpcomingEvents = () => {
       </div>
     );
   }
-
-  const handleReorderEvents = useCallback(async (reordered: UpcomingEvent[]) => {
-    setEvents(reordered);
-    const updates = reordered.map((ev, i) =>
-      supabase.from("upcoming_events").update({ sort_order: i }).eq("id", ev.id)
-    );
-    await Promise.all(updates);
-    toast.success("Ordem atualizada!");
-  }, []);
-
-  const { dragIndex, overIndex, handleDragStart, handleDragOver, handleDrop, handleDragEnd } =
-    useDragReorder(events, handleReorderEvents);
 
   return (
     <div>
