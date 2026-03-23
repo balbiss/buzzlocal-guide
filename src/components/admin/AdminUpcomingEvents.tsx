@@ -237,6 +237,18 @@ const AdminUpcomingEvents = () => {
     );
   }
 
+  const handleReorderEvents = useCallback(async (reordered: UpcomingEvent[]) => {
+    setEvents(reordered);
+    const updates = reordered.map((ev, i) =>
+      supabase.from("upcoming_events").update({ sort_order: i }).eq("id", ev.id)
+    );
+    await Promise.all(updates);
+    toast.success("Ordem atualizada!");
+  }, []);
+
+  const { dragIndex, overIndex, handleDragStart, handleDragOver, handleDrop, handleDragEnd } =
+    useDragReorder(events, handleReorderEvents);
+
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
@@ -256,8 +268,19 @@ const AdminUpcomingEvents = () => {
         <p className="text-muted-foreground text-center py-12">Nenhum evento criado.</p>
       ) : (
         <div className="space-y-3">
-          {events.map((event) => (
-            <div key={event.id} className="bg-card border border-border rounded-lg p-4 flex items-center justify-between gap-4">
+          {events.map((event, index) => (
+            <div
+              key={event.id}
+              draggable
+              onDragStart={handleDragStart(index)}
+              onDragOver={handleDragOver(index)}
+              onDrop={handleDrop(index)}
+              onDragEnd={handleDragEnd}
+              className={`bg-card border rounded-lg p-4 flex items-center justify-between gap-4 transition-all cursor-grab active:cursor-grabbing ${
+                dragIndex === index ? "opacity-40 scale-95" : ""
+              } ${overIndex === index && dragIndex !== index ? "border-primary ring-1 ring-primary/30" : "border-border"}`}
+            >
+              <GripVertical size={18} className="text-muted-foreground shrink-0" />
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-foreground truncate">{event.title}</h3>
                 <p className="text-xs text-muted-foreground">
