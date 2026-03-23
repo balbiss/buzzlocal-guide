@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Plus, Trash2, ArrowLeft, Upload, X, GripVertical } from "lucide-react";
+import { useDragReorder } from "@/hooks/use-drag-reorder";
 
 type GalleryEvent = {
   id: string;

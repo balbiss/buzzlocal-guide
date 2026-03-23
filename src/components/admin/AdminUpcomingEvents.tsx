@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
-import { Plus, Edit2, Trash2, ArrowLeft, Upload } from "lucide-react";
+import { Plus, Edit2, Trash2, ArrowLeft, Upload, GripVertical } from "lucide-react";
+import { useDragReorder } from "@/hooks/use-drag-reorder";
 
 type UpcomingEvent = {
   id: string;
