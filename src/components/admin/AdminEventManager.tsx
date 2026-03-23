@@ -212,6 +212,18 @@ const AdminEventManager = () => {
     }
   };
 
+  const handleReorderEvents = useCallback(async (reordered: GalleryEvent[]) => {
+    setEvents(reordered);
+    const updates = reordered.map((ev, i) =>
+      supabase.from("gallery_events").update({ sort_order: i }).eq("id", ev.id)
+    );
+    await Promise.all(updates);
+    toast.success("Ordem atualizada!");
+  }, []);
+
+  const { dragIndex, overIndex, handleDragStart, handleDragOver, handleDrop, handleDragEnd } =
+    useDragReorder(events, handleReorderEvents);
+
   // Viewing single event photos
   if (viewingEvent) {
     return (
@@ -322,18 +334,6 @@ const AdminEventManager = () => {
       </div>
     );
   }
-
-  const handleReorderEvents = useCallback(async (reordered: GalleryEvent[]) => {
-    setEvents(reordered);
-    const updates = reordered.map((ev, i) =>
-      supabase.from("gallery_events").update({ sort_order: i }).eq("id", ev.id)
-    );
-    await Promise.all(updates);
-    toast.success("Ordem atualizada!");
-  }, []);
-
-  const { dragIndex, overIndex, handleDragStart, handleDragOver, handleDrop, handleDragEnd } =
-    useDragReorder(events, handleReorderEvents);
 
   // Events list
   return (
