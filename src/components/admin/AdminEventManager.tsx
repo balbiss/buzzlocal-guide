@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Plus, Trash2, ArrowLeft, Upload, X, GripVertical } from "lucide-react";
+import { useDragReorder } from "@/hooks/use-drag-reorder";
 
 type GalleryEvent = {
   id: string;
@@ -211,6 +212,18 @@ const AdminEventManager = () => {
     }
   };
 
+  const handleReorderEvents = useCallback(async (reordered: GalleryEvent[]) => {
+    setEvents(reordered);
+    const updates = reordered.map((ev, i) =>
+      supabase.from("gallery_events").update({ sort_order: i }).eq("id", ev.id)
+    );
+    await Promise.all(updates);
+    toast.success("Ordem atualizada!");
+  }, []);
+
+  const { dragIndex, overIndex, handleDragStart, handleDragOver, handleDrop, handleDragEnd } =
+    useDragReorder(events, handleReorderEvents);
+
   // Viewing single event photos
   if (viewingEvent) {
     return (
@@ -342,11 +355,19 @@ const AdminEventManager = () => {
         <p className="text-muted-foreground text-center py-12">Nenhum evento criado.</p>
       ) : (
         <div className="space-y-3">
-          {events.map((event) => (
+          {events.map((event, index) => (
             <div
               key={event.id}
-              className="bg-card border border-border rounded-lg p-4 flex items-center justify-between gap-4"
+              draggable
+              onDragStart={handleDragStart(index)}
+              onDragOver={handleDragOver(index)}
+              onDrop={handleDrop(index)}
+              onDragEnd={handleDragEnd}
+              className={`bg-card border rounded-lg p-4 flex items-center justify-between gap-4 transition-all cursor-grab active:cursor-grabbing ${
+                dragIndex === index ? "opacity-40 scale-95" : ""
+              } ${overIndex === index && dragIndex !== index ? "border-primary ring-1 ring-primary/30" : "border-border"}`}
             >
+              <GripVertical size={18} className="text-muted-foreground shrink-0" />
               <button onClick={() => handleViewEvent(event)} className="flex-1 min-w-0 text-left">
                 <h3 className="font-semibold text-foreground truncate">{event.title}</h3>
                 <p className="text-xs text-muted-foreground">{event.year}</p>
